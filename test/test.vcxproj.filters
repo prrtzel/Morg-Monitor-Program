@@ -30,6 +30,9 @@
     <ClCompile Include="crt0.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="morgio.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="linker.ld">
@@ -45,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="crt0.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="morgio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

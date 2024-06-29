@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="crt0.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="morgio.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="linker.ld" />
@@ -140,6 +141,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="crt0.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="morgio.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

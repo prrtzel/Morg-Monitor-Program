@@ -1,6 +1,6 @@
 #include "stdint.h"
 #include "crt0.h"
-
+#include "main.h"
 
 extern uint32_t end_stack;
 extern uint32_t end_text;
@@ -42,3 +42,130 @@ const uint32_t *isr_vectors[] = {
     0,                                              // Unassigned, Reserved
     0,                                              // Unassigned, Reserved
 };
+
+void Reset_Handler(void) {
+	// Initialize stack pointer
+    __asm("move.l #end_stack, %sp");
+
+    // Copy .data section from ROM to RAM
+    uint32_t *src = &end_text;
+    uint32_t *dst = &start_data;
+
+    while (dst < &end_data)
+    {
+        *dst++ = *src++;
+    }
+
+    // Zero initialize .bss section in RAM
+    dst = &start_bss;
+    while (dst < &end_bss)
+    {
+        *dst++ = 0;
+    }
+
+#ifdef HARDWARE
+    // Initialize DUART
+#endif
+
+    // Call the main function
+    main();
+
+#ifdef HARDWARE
+    // infinite loop until reset
+    // when main returns
+    while (1);
+#endif
+
+    return;
+}
+
+void Default_Handler(void) {
+    // while (1);
+    return;
+}
+
+// Provide weak definitions for the interrupt handlers
+void Bus_Error_Handler(void)__attribute__((weak));
+void Bus_Error_Handler(void) {
+    Default_Handler();
+}
+
+void Address_Error_Handler(void)__attribute__((weak));
+void Address_Error_Handler(void) {
+    Default_Handler();
+}
+
+void Illegal_Instruction_Handler(void)__attribute__((weak));
+void Illegal_Instruction_Handler(void) {
+    Default_Handler();
+}
+
+void Zero_Divide_Handler(void)__attribute__((weak));
+void Zero_Divide_Handler(void) {
+    Default_Handler();
+}
+
+void CHK_Instruction_Handler(void) __attribute__((weak));
+void CHK_Instruction_Handler(void) {
+    Default_Handler();
+}
+
+void TRAPV_Instruction_Handler(void) __attribute__((weak));
+void TRAPV_Instruction_Handler(void) {
+    Default_Handler();
+}
+
+void Privilege_Violation_Handler(void) __attribute__((weak));
+void Privilege_Violation_Handler(void) {
+    Default_Handler();
+}
+
+void Trace_Handler(void) __attribute__((weak));
+void Trace_Handler(void) {
+    Default_Handler();
+}
+
+void Line_1010_Emulator_Handler(void) __attribute__((weak));
+void Line_1010_Emulator_Handler(void) {
+    Default_Handler();
+}
+
+void Line_1111_Emulator_Handler(void) __attribute__((weak));
+void Line_1111_Emulator_Handler(void) {
+    Default_Handler();
+}
+
+void Level1_Interrupt_Auto_Vector_Handler(void) __attribute__((weak));
+void Level1_Interrupt_Auto_Vector_Handler(void) {
+    Default_Handler();
+}
+
+void Level2_Interrupt_Auto_Vector_Handler(void) __attribute__((weak));
+void Level2_Interrupt_Auto_Vector_Handler(void) {
+    Default_Handler();
+}
+
+void Level3_Interrupt_Auto_Vector_Handler(void) __attribute__((weak));
+void Level3_Interrupt_Auto_Vector_Handler(void) {
+    Default_Handler();
+}
+
+void Level4_Interrupt_Auto_Vector_Handler(void) __attribute__((weak));
+void Level4_Interrupt_Auto_Vector_Handler(void) {
+    Default_Handler();
+}
+
+void Level5_Interrupt_Auto_Vector_Handler(void) __attribute__((weak));
+void Level5_Interrupt_Auto_Vector_Handler(void) {
+    Default_Handler();
+}
+
+void Level6_Interrupt_Auto_Vector_Handler(void) __attribute__((weak));
+void Level6_Interrupt_Auto_Vector_Handler(void) {
+    Default_Handler();
+}
+
+void Level7_Interrupt_Auto_Vector_Handler(void) __attribute__((weak));
+void Level7_Interrupt_Auto_Vector_Handler(void) {
+    Default_Handler();
+}

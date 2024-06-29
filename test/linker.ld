@@ -1,4 +1,4 @@
-ENTRY(main)
+ENTRY(Reset_Handler)
 OUTPUT_ARCH(m68k)
 OUTPUT_FORMAT(srec)
 
