@@ -1,0 +1,2 @@
+m68k-elf-gcc -Wall -g src/main.c -c -m68000 -o main.o
+m68k-elf-ld -o morg.S68 -T linker.ld main.o

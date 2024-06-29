@@ -1,0 +1,20 @@
+# George Yacoubian
+# Test project for MCD Rev 2
+
+LINKER := linker.ld
+FILES := main crt0
+OUTPUT_FILES := $(foreach file, $(FILES), $(file).o)
+CMD_SEPERATOR := &
+
+
+all: gcc link clean done
+gcc:
+	$(foreach file, $(FILES), m68k-elf-gcc -Wall -g $(file).c -c -m68000 -o $(file).o -ffreestanding $(CMD_SEPERATOR))
+link:
+	m68k-elf-ld -o morg.S68 -T $(LINKER) $(OUTPUT_FILES)
+clean:
+	$(foreach file, $(FILES), rm $(file).o $(CMD_SEPERATOR))
+done:
+	echo "ALL DONE :)"
+run: 
+	cmd.exe /c morg.bat
