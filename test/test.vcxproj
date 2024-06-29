@@ -135,6 +135,7 @@
     <None Include="linker.ld" />
     <None Include="makefile" />
     <None Include="morg.bat" />
+    <None Include="morg.S68" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />

@@ -1,3 +1,4 @@
+// ReSharper disable All
 #include "stdint.h"
 #include "crt0.h"
 #include "main.h"

@@ -25,5 +25,4 @@ void Level5_Interrupt_Auto_Vector_Handler(void)__attribute__((weak));
 void Level6_Interrupt_Auto_Vector_Handler(void)__attribute__((weak));
 void Level7_Interrupt_Auto_Vector_Handler(void)__attribute__((weak));
 
-
 #endif
