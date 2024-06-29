@@ -2,10 +2,6 @@
 #ifndef CRT0_H
 #define CRT0_H
 
-
-//#define HW
-#define SIM
-
 void Reset_Handler(void);
 void Bus_Error_Handler(void)__attribute__((weak));
 void Address_Error_Handler(void)__attribute__((weak));
