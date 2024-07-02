@@ -132,6 +132,7 @@
     <ClCompile Include="crt0.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="morgio.c" />
+    <ClCompile Include="morglib.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="linker.ld" />
@@ -148,6 +149,7 @@
     <ClInclude Include="envctrl.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="morgio.h" />
+    <ClInclude Include="morglib.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

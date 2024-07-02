@@ -36,6 +36,9 @@
     <ClCompile Include="conversions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="morglib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="linker.ld">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="conversions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="morglib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

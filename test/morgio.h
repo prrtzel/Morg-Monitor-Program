@@ -47,12 +47,4 @@ extern char get_char(void);
  */
 extern void get_string(void);
 
-/**
- * @brief clears a given array/buffer to 0
- *
- * @param buffer pointer to buffer thy wish to clear
- * @param size size of thy buffer (it does matter in this case)
- */
-extern void clear_buffer(char* buffer, const int size);
-
 #endif

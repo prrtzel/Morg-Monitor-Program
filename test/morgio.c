@@ -1,4 +1,5 @@
 #include "morgio.h"
+#include "morglib.h"
 #include "envctrl.h"
 
 // serial print buffer
@@ -49,8 +50,8 @@ extern void get_string(void) {
             if (i != 0) {
                 i--;
                 input_buffer[i] = '\0';
-                // Print the backspace
-                serial_print("\b\0");
+                // cursor is moved back and a space is printed to overwrite the character
+                serial_print(" \b");
             }
         }
         else {
@@ -58,11 +59,8 @@ extern void get_string(void) {
             i++;
         }
     }
+    i--;
+    input_buffer[i] = '\0';
     serial_print("\n\r\0");
 }
 
-extern void clear_buffer(char* buffer, const int size) {
-    for (int i = 0; i < size; i++) {
-        *buffer++ = 0;
-    }
-}
