@@ -4,8 +4,8 @@ OUTPUT_FORMAT(srec)
 
 MEMORY
 {
-    ROM (rx)  : ORIGIN = 0x00000000, LENGTH = 500K
-    RAM (rwx) : ORIGIN = 0x00100000, LENGTH = 128K
+    ROM (rx)  : ORIGIN = 0x00000000, LENGTH = 500k
+    RAM (rwx) : ORIGIN = 0x00100000, LENGTH = 64k
 }
 
 

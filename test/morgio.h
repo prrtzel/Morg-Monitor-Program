@@ -47,4 +47,6 @@ extern char get_char(void);
  */
 extern void get_string(void);
 
+
+void get_input(void);
 #endif

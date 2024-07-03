@@ -64,3 +64,8 @@ extern void get_string(void) {
     serial_print("\n\r\0");
 }
 
+void get_input(void)
+{
+	serial_print("Morg>> ");
+	get_string();
+}

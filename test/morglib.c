@@ -4,9 +4,6 @@
 #include "conversions.h"
 #include "morgio.h"
 
-// ReSharper disable once CppVariableCanBeMadeConstexpr
-const char commands[num_of_cmds][cmd_length] = { "rm", "dmp", "wm", "rr", "wr", "ld", "run" };
-
 void clear_buffer(char* buffer, const int size) {
 	for (int i = 0; i < size; i++) {
 		*buffer++ = 0;
@@ -60,67 +57,84 @@ bool cmp_str(const char* str1, const char* str2) {
 	return true;
 }
 
+// Commands ---------------------------------------------------------------------------------------------------
+
+// ReSharper disable once CppVariableCanBeMadeConstexpr
+const char commands[num_of_cmds][cmd_length] = { "rm", "dmp", "wm", "rr", "wr", "ld", "run", "exit", "help" };
+
+typedef void (*function_pointer)(char args[num_of_cmds][arg_length], int num_of_args);
+// ReSharper disable once CppVariableCanBeMadeConstexpr
+function_pointer const cmd_ptr[] = { rm, dmp, wm, rr, wr, ld, run, exit_morg, help };
+
+bool exit_code = false;
+
 void rm(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 2)
-		serial_print("Error: Invalid Arguments.\nUsage: rm [address]\n");
+		serial_print("Error: Invalid Arguments.\n\rUsage: rm [address]\n\r");
 	else if (get_str_length(args[1]) != 8)
-		serial_print("Error: Invalid Address. Must be 8 bytes long.\n");
-	return;
+		serial_print("Error: Invalid Address. Must be 8 bytes long.\n\r");
 }
 void dmp(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 3)
-		serial_print("Error: Invalid Arguments.\nUsage: dmp [start address] [end address]\n");
+		serial_print("Error: Invalid Arguments.\n\rUsage: dmp [start address] [end address]\n\r");
 	else if (get_str_length(args[1]) != 8 || get_str_length(args[2]) != 8)
-		serial_print("Error: Invalid Address. Must be 8 bytes long.\n");
-	return;
+		serial_print("Error: Invalid Address. Must be 8 bytes long.\n\r");
 }
 void wm(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 3)
-		serial_print("Error: Invalid Arguments.\nUsage: wm [address] [value]\n");
+		serial_print("Error: Invalid Arguments.\n\rUsage: wm [address] [value]\n\r");
 	else if (get_str_length(args[1]) != 8 || get_str_length(args[2]) != 8)
-		serial_print("Error: Invalid Address and or Value. Must be 8 bytes long.\n");
-	return;
+		serial_print("Error: Invalid Address and or Value. Must be 8 bytes long.\n\r");
 }
 void rr(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 2)
-		serial_print("Error: Invalid Arguments.\nUsage: rr [register]\n");
-	return;
+		serial_print("Error: Invalid Arguments.\n\rUsage: rr [register]\n\r");
 }
 void wr(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 3)
-		serial_print("Error: Invalid Arguments.\nUsage: wr [register] [value]\n");
-	return;
+		serial_print("Error: Invalid Arguments.\n\rUsage: wr [register] [value]\n\r");
 }
 void ld(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 1)
-		serial_print("Error: Invalid Arguments.\nUsage: ld\n");
-	else
-		serial_print("ld");
-	return;
+		serial_print("Error: Invalid Arguments.\n\rUsage: ld\n\r");
 }
 void run(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 1)
-		serial_print("Error: Invalid Arguments.\nUsage: run\n");
-	else
-		serial_print("run");
-	return;
+		serial_print("Error: Invalid Arguments.\n\rUsage: run\n\r");
 }
 
-void (*fn[7])(char args[num_of_cmds][arg_length], int num_of_args) =
-{ &rm, &dmp, &wm, &rr, &wr, &ld, &run };
+void exit_morg(char args[num_of_cmds][arg_length], int num_of_args)
+{
+	serial_print("Program Ended");
+	exit_code = true;
+}
+
+void help(char args[num_of_cmds][arg_length], int num_of_args)
+{
+	serial_print(
+"Morg Monitor Program\n\r"
+  "'help'\tDisplays this page\n\r"
+  "'exit'\tExit Morg (you monster)\n\r"
+  "'rm'\tReads Byte at specific location\n\r"
+  "'dmp'\tDumps bytes from a memory range\n\r"
+  "'wm'\tWrites a byte to the specified location in memory\n\r"
+  "'rr'\tRead a specified register\n\r"
+  "'wr'\tWrite a long word to a specified register\n\r"
+  "'ld'\tLoad an s-record into memory\n\r"
+  "'run'\tRun the s-record\n\r");
+}
 
 void parse_cmd(void)
 {
-
-	// Declare and clear args, cant use = {0} because that file is missing lol
 	char args[num_of_cmds][arg_length];
+
+	// clear the args buffer because = {0} doesn't work :(
 	for (int i = 0; i < num_of_cmds; i++) {
 		for (int j = 0; j < arg_length; j++) {
 			args[i][j] = 0;
 		}
 	}
 
-	get_string();
 	split_str(input_buffer, args);
 
 	//find number of args
@@ -133,34 +147,14 @@ void parse_cmd(void)
 			break;
 	}
 
-	binary_to_ascii_hex(num_of_args, output_buffer, 1);
-	serial_print(output_buffer);
-	serial_print("\n\r");
-	clear_buffer(output_buffer, output_buffer_size);
-
-	//get rid of /n
-	for (int i = 0; i < arg_length; i++)
-	{
-		if (args[num_of_args - 1][i] == '\n')
-		{
-			serial_print("replaced n with 0");
-			args[num_of_args - 1][i] = '\0';
-			break;
-		}
-	}
-
 	bool is_valid_cmd = false;
-
-	serial_print(args[0]);
 
 	//Match the key and call the respective cmd
 	for (int i = 0; i < num_of_cmds; i++)
 	{
 		if (cmp_str(args[0], commands[i]) == true)
 		{
-			serial_print("\n\rcmp true\n\r");
-			(*fn[i])(args, num_of_args);
-			serial_print("control returned");
+			cmd_ptr[i](args, num_of_args);
 			is_valid_cmd = true;
 			break;
 		}
