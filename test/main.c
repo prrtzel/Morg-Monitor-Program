@@ -7,7 +7,7 @@ int main(void)
   "Distribute at your own risk!\n\r"
   "ABSOLUTELY NO REFUNDS OR WARRANTY AND STUFF\n\r"
   "ver 4.0\n\r"
-  "Type 'help' for a list of commands\n\r");
+  "Type 'help' for a list of commands\n\r\n\r");
 
 	while (!exit_code)
 	{

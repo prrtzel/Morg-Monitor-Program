@@ -20,7 +20,7 @@ enum
 
 // All buffer sizes
 enum buffer_sizes {
-	input_buffer_size = 128,
+	input_buffer_size = 1000,
 	output_buffer_size = 128
 };
 

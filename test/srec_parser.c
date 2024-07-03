@@ -4,7 +4,7 @@
 #include "morgio.h"
 #include "morglib.h"
 
-
+#define DBUG
 const struct
 {
 	const char* srec_type_str;
@@ -97,6 +97,7 @@ void parse_srec_line(char* srec, srecord* srec_struct)
 	if (verify_checksum(sum, s.checksum) == false)
 	{
 		serial_print("Error: Checksum Failed\n\r");
+		return;
 	}
 	morg_memcpy(srec_struct, &s, sizeof(srecord));
 }
@@ -112,6 +113,11 @@ srecord_type get_srec_type(char* str)
 	{
 		if (cmp_str(buffer, srec_map[i].srec_type_str))
 		{
+#ifdef DBUG
+			serial_print("Type: ");
+			serial_print(srec_map[i].srec_type_str);
+			serial_print("\n\r");
+#endif
 			return srec_map[i].srec_type;
 		}
 	}

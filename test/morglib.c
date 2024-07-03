@@ -184,7 +184,12 @@ void wr(char args[num_of_cmds][arg_length], int num_of_args) {
 void ld(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 1)
 		serial_print("Error: Invalid Arguments.\n\rUsage: ld\n\r");
-	write_srecord(args[1]);
+	else
+	{
+		serial_print("Enter the S-Record:\n\r")
+		get_string();
+		write_srecord(input_buffer);
+	}
 }
 
 void run(char args[num_of_cmds][arg_length], int num_of_args) {
