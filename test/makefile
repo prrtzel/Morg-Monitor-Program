@@ -2,7 +2,7 @@
 # Test project for MCD Rev 2
 
 LINKER := linker.ld
-FILES := main crt0 morgio conversions morglib
+FILES := main crt0 morgio conversions morglib srec_parser
 OUTPUT_FILES := $(foreach file, $(FILES), $(file).o)
 CMD_SEPERATOR := &
 

@@ -133,6 +133,7 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="morgio.c" />
     <ClCompile Include="morglib.c" />
+    <ClCompile Include="srec_parser.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="linker.ld" />
@@ -150,6 +151,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="morgio.h" />
     <ClInclude Include="morglib.h" />
+    <ClInclude Include="srec_parser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

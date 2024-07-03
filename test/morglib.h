@@ -4,13 +4,34 @@
 #include <stdint.h>
 
 
-enum command_lengths
+enum
 {
 	num_of_cmds = 9,
 	cmd_length = 5,
 	arg_length = 50,
-	max_num_of_args = 10
+	max_num_of_args = 10,
+	end_address_space = 0x0011f000,
+	end_rom_space = 0x00100000
 };
+
+typedef enum registers{
+    d0,
+    d1,
+    d2,
+    d3,
+    d4,
+    d5,
+    d6,
+    d7,
+    a0,
+    a1,
+    a2,
+    a3,
+    a4,
+    a5,
+    a6,
+    a7
+}registers;
 
 /**
  * @brief clears a given array/buffer to 0
@@ -45,7 +66,13 @@ void parse_cmd(void);
 
 void read_memory(uint32_t address);
 
-void mem_dump(const char* starting_address, const char* ending_address);
+void mem_dump(uint32_t starting_address, uint32_t ending_address);
 
-void write_memory(char* address, const char data);
+void write_memory(uint32_t address, const char data);
+
+registers get_register(const char* str);
+
+void read_register(registers reg);
+
+void write_register(registers reg, uint32_t data);
 #endif

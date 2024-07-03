@@ -3,9 +3,11 @@
 #include <stdint.h>
 #include "morglib.h"
 
-extern uint32_t ascii_hex_to_bin(const char* ascii_buffer) {
+extern uint32_t ascii_hex_to_bin(const char* ascii_buffer, int length) {
     uint32_t result = 0;
-    const int length = get_str_length(ascii_buffer);
+    if (length == 0) {
+		length = get_str_length(ascii_buffer);
+	}
     
     for (int i = 0; i < length; i++) {
         unsigned char value = ascii_buffer[i];

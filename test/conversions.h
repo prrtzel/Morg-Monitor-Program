@@ -5,17 +5,18 @@
 
 enum ascii_bin_lengths
 {
-	hex_byte_length = 2,
-	hex_word_length = 4,
-	hex_long_length = 8
+    hex_byte_length = 2,
+    hex_word_length = 4,
+    hex_long_length = 8
 };
 
 /**
  * @brief Converts ascii hex string to binary 
- * @param ascii_buffer 
+ * @param ascii_buffer
+ * @param length 
  * @return uint32_t
  */
-extern uint32_t ascii_hex_to_bin(const char* ascii_buffer);
+extern uint32_t ascii_hex_to_bin(const char* ascii_buffer, int length);
 
 /**
  * @brief Converts ascii decimal string to binary
