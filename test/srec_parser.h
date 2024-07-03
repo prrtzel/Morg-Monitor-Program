@@ -30,22 +30,8 @@ typedef enum srecord_type {
 	s9
 }srecord_type;
 
-const struct 
-{
-	const char* srec_type_str;
-	srecord_type srec_type;
-} srec_map[] = {
-	{"S0", s0},
-	{"S1", s1},
-	{"S2", s2},
-	{"S3", s3},
-	{"S5", s5},
-	{"S7", s7},
-	{"S8", s8},
-	{"S9", s9}
-};
 
-srecord_type get_srec_type(const char* str);
+srecord_type get_srec_type(char* str);
 
 typedef struct srecord {
 	srecord_type type;
@@ -60,7 +46,7 @@ typedef struct srecord {
 
 int find_address_sum(char* str, const int length);
 bool verify_checksum(const int sum, const char checksum);
-srecord parse_srec_line(char* srec);
+void parse_srec_line(char* srec, srecord* srec_struct);
 
 //only public function
 extern uint32_t write_srecord(char* srec);

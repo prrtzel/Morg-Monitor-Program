@@ -58,6 +58,18 @@ bool cmp_str(const char* str1, const char* str2) {
 	}
 	return true;
 }
+
+void morg_memcpy(void *dest, void* src, uint32_t n)
+{
+	char* c_dest = (char*)dest;
+	char* c_src = (char*)src;
+
+	for (uint32_t i = 0; i < n; i++)
+	{
+		c_dest[i] = c_src[i];
+	}
+}
+
 #pragma endregion
 
 #pragma region Command Functions

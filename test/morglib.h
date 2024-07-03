@@ -49,6 +49,8 @@ void split_str(const char* str, char split_string_array[num_of_cmds][arg_length]
 
 bool cmp_str(const char* str1, const char* str2);
 
+extern void morg_memcpy(void* dest, void* src, uint32_t n);
+
 extern bool exit_code;
 
 void rm(char args[num_of_cmds][arg_length], int num_of_args);
