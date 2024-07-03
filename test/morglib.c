@@ -1,9 +1,10 @@
 #include "morglib.h"
 #include <stdbool.h>
-
+#include <stdint.h>
 #include "conversions.h"
 #include "morgio.h"
 
+#pragma region Library Functions
 void clear_buffer(char* buffer, const int size) {
 	for (int i = 0; i < size; i++) {
 		*buffer++ = 0;
@@ -56,7 +57,9 @@ bool cmp_str(const char* str1, const char* str2) {
 	}
 	return true;
 }
+#pragma endregion
 
+#pragma region Command Functions
 // Commands ---------------------------------------------------------------------------------------------------
 
 // ReSharper disable once CppVariableCanBeMadeConstexpr
@@ -73,6 +76,18 @@ void rm(char args[num_of_cmds][arg_length], int num_of_args) {
 		serial_print("Error: Invalid Arguments.\n\rUsage: rm [address]\n\r");
 	else if (get_str_length(args[1]) != 8)
 		serial_print("Error: Invalid Address. Must be 8 bytes long.\n\r");
+	else
+	{
+		const uint32_t address = ascii_hex_to_bin(args[1]);
+		if (address > 0x0011f000)
+		{
+			serial_print("Error: Address out of range.\n\r");
+		}
+		else
+		{
+			read_memory(address);
+		}
+	}
 }
 void dmp(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 3)
@@ -163,3 +178,40 @@ void parse_cmd(void)
 	if (is_valid_cmd == false)
 		serial_print("Error: Invalid Command.\n");
 }
+#pragma endregion
+
+#pragma region Memory and Register Functions
+// Memory and Register -----------------------------------------------------------------------------------------------------
+
+void read_memory(uint32_t address) { //NOLINT
+	char* address_pointer = (char*)address; //NOLINT
+	binary_to_ascii_hex(*address_pointer, output_buffer, hex_byte_length);
+	serial_print(output_buffer);
+	serial_print("\n\r");
+}
+
+//void mem_dump(const char *starting_address, const char* ending_address) {
+//	int j = 1;
+//	for (int i = 0; i <= (int)ending_address; i++) {
+//		read_memory(starting_address + i);
+//		serial_print(" ");
+//		if (j == 16) {
+//			serial_print("\n\r");
+//			j = 0;
+//		}
+//		j++;
+//	}
+//	serial_print("\n\r");
+//}
+//
+//void write_memory(char *address, const char data) {
+//	char* address_pointer = address;
+//	*address_pointer = data;
+//	serial_print("Data Wrote Successfully\n\r");
+//}
+
+#pragma endregion
+
+#pragma region S-Record Functions
+// S-Record -----------------------------------------------------------------------------------------------------
+#pragma endregion

@@ -1,6 +1,7 @@
 #ifndef MORGLIB_H
 #define MORGLIB_H //NOLINT
 #include <stdbool.h>
+#include <stdint.h>
 
 
 enum command_lengths
@@ -41,4 +42,10 @@ void help(char args[num_of_cmds][arg_length], int num_of_args);
 
 void parse_cmd(void);
 
+
+void read_memory(uint32_t address);
+
+void mem_dump(const char* starting_address, const char* ending_address);
+
+void write_memory(char* address, const char data);
 #endif
