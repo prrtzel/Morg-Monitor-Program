@@ -33,6 +33,15 @@
     <ClCompile Include="morgio.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="conversions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="morglib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="srec_parser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="linker.ld">
@@ -44,6 +53,9 @@
     </None>
     <None Include="morg.S68">
       <Filter>build</Filter>
+    </None>
+    <None Include="elf_linker.ld">
+      <Filter>etc</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +69,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="morgio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="envctrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="conversions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="morglib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="srec_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

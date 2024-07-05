@@ -1,0 +1,503 @@
+00000000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 7/4/2024 2:01:14 PM
+
+Line 1 ERROR: Illegal symbol
+00000000                             1  #NO_APP
+Line 2 ERROR: Invalid opcode
+00000000                             2      .file   "crt0.c"
+Line 3 ERROR: Invalid opcode
+00000000                             3      .text
+Line 4 ERROR: Invalid opcode
+00000000                             4      .globl  isr_vectors
+Line 5 ERROR: Invalid opcode
+00000000                             5      .section    .isr_vec,"aw"
+Line 6 ERROR: Invalid opcode
+00000000                             6      .align  2
+Line 7 ERROR: Invalid opcode
+00000000                             7      .type   isr_vectors, @object
+Line 8 ERROR: Invalid opcode
+00000000                             8      .size   isr_vectors, 120
+00000000                             9  isr_vectors:
+Line 10 ERROR: Invalid opcode
+00000000                            10      .long   end_stack
+Line 11 ERROR: Invalid opcode
+00000000                            11      .long   Reset_Handler
+Line 12 ERROR: Invalid opcode
+00000000                            12      .long   Bus_Error_Handler
+Line 13 ERROR: Invalid opcode
+00000000                            13      .long   Address_Error_Handler
+Line 14 ERROR: Invalid opcode
+00000000                            14      .long   Illegal_Instruction_Handler
+Line 15 ERROR: Invalid opcode
+00000000                            15      .long   Zero_Divide_Handler
+Line 16 ERROR: Invalid opcode
+00000000                            16      .long   CHK_Instruction_Handler
+Line 17 ERROR: Invalid opcode
+00000000                            17      .long   TRAPV_Instruction_Handler
+Line 18 ERROR: Invalid opcode
+00000000                            18      .long   Privilege_Violation_Handler
+Line 19 ERROR: Invalid opcode
+00000000                            19      .long   Trace_Handler
+Line 20 ERROR: Invalid opcode
+00000000                            20      .long   Line_1010_Emulator_Handler
+Line 21 ERROR: Invalid opcode
+00000000                            21      .long   Line_1111_Emulator_Handler
+Line 22 ERROR: Invalid opcode
+00000000                            22      .long   0
+Line 23 ERROR: Invalid opcode
+00000000                            23      .long   0
+Line 24 ERROR: Invalid opcode
+00000000                            24      .long   0
+Line 25 ERROR: Invalid opcode
+00000000                            25      .long   0
+Line 26 ERROR: Invalid opcode
+00000000                            26      .long   0
+Line 27 ERROR: Invalid opcode
+00000000                            27      .long   0
+Line 28 ERROR: Invalid opcode
+00000000                            28      .long   0
+Line 29 ERROR: Invalid opcode
+00000000                            29      .long   Level1_Interrupt_Auto_Vector_Handler
+Line 30 ERROR: Invalid opcode
+00000000                            30      .long   Level2_Interrupt_Auto_Vector_Handler
+Line 31 ERROR: Invalid opcode
+00000000                            31      .long   Level3_Interrupt_Auto_Vector_Handler
+Line 32 ERROR: Invalid opcode
+00000000                            32      .long   Level4_Interrupt_Auto_Vector_Handler
+Line 33 ERROR: Invalid opcode
+00000000                            33      .long   Level5_Interrupt_Auto_Vector_Handler
+Line 34 ERROR: Invalid opcode
+00000000                            34      .long   Level6_Interrupt_Auto_Vector_Handler
+Line 35 ERROR: Invalid opcode
+00000000                            35      .long   Level7_Interrupt_Auto_Vector_Handler
+Line 36 ERROR: Invalid opcode
+00000000                            36      .long   0
+Line 37 ERROR: Invalid opcode
+00000000                            37      .long   0
+Line 38 ERROR: Invalid opcode
+00000000                            38      .long   0
+Line 39 ERROR: Invalid opcode
+00000000                            39      .long   0
+Line 40 ERROR: Invalid opcode
+00000000                            40      .text
+Line 41 ERROR: Invalid opcode
+00000000                            41      .align  2
+Line 42 ERROR: Invalid opcode
+00000000                            42      .globl  Reset_Handler
+Line 43 ERROR: Invalid opcode
+00000000                            43      .type   Reset_Handler, @function
+00000000                            44  Reset_Handler:
+Line 45 ERROR: Invalid syntax
+00000000                            45      link.w %fp,#-8
+Line 46 ERROR: Invalid syntax
+00000000                            46      move.l %d2,-(%sp)
+Line 47 ERROR: Illegal symbol
+00000000                            47  #APP
+Line 48 ERROR: Illegal symbol
+00000000                            48  | 49 "crt0.c" 1
+Line 49 ERROR: Invalid syntax
+00000000                            49      move.l #end_stack, %sp
+Line 50 ERROR: Illegal symbol
+00000000                            50  | 0 "" 2
+Line 51 ERROR: Illegal symbol
+00000000                            51  #NO_APP
+Line 52 ERROR: Invalid syntax
+00000000                            52      move.l #end_text,-4(%fp)
+Line 53 ERROR: Invalid syntax
+00000000                            53      move.l #start_data,-8(%fp)
+Line 54 ERROR: Invalid opcode
+00000000                            54      jra .L2
+00000000                            55  .L3:
+Line 56 ERROR: Invalid syntax
+00000000                            56      move.l -4(%fp),%d1
+Line 57 ERROR: Invalid syntax
+00000000                            57      move.l %d1,%d0
+Line 58 ERROR: Invalid syntax
+00000000                            58      addq.l #4,%d0
+Line 59 ERROR: Invalid syntax
+00000000                            59      move.l %d0,-4(%fp)
+Line 60 ERROR: Invalid syntax
+00000000                            60      move.l -8(%fp),%d0
+Line 61 ERROR: Invalid syntax
+00000000                            61      move.l %d0,%d2
+Line 62 ERROR: Invalid syntax
+00000000                            62      addq.l #4,%d2
+Line 63 ERROR: Invalid syntax
+00000000                            63      move.l %d2,-8(%fp)
+Line 64 ERROR: Invalid syntax
+00000000                            64      move.l %d1,%a0
+Line 65 ERROR: Invalid syntax
+00000000                            65      move.l (%a0),%d1
+Line 66 ERROR: Invalid syntax
+00000000                            66      move.l %d0,%a0
+Line 67 ERROR: Invalid syntax
+00000000                            67      move.l %d1,(%a0)
+00000000                            68  .L2:
+Line 69 ERROR: Invalid syntax
+00000000                            69      cmp.l #end_data,-8(%fp)
+Line 70 ERROR: Invalid opcode
+00000000                            70      jcs .L3
+Line 71 ERROR: Invalid syntax
+00000000                            71      move.l #start_bss,-8(%fp)
+Line 72 ERROR: Invalid opcode
+00000000                            72      jra .L4
+00000000                            73  .L5:
+Line 74 ERROR: Invalid syntax
+00000000                            74      move.l -8(%fp),%d0
+Line 75 ERROR: Invalid syntax
+00000000                            75      move.l %d0,%d1
+Line 76 ERROR: Invalid syntax
+00000000                            76      addq.l #4,%d1
+Line 77 ERROR: Invalid syntax
+00000000                            77      move.l %d1,-8(%fp)
+Line 78 ERROR: Invalid syntax
+00000000                            78      move.l %d0,%a0
+Line 79 ERROR: Invalid syntax
+00000000                            79      clr.l (%a0)
+00000000                            80  .L4:
+Line 81 ERROR: Invalid syntax
+00000000                            81      cmp.l #end_bss,-8(%fp)
+Line 82 ERROR: Invalid opcode
+00000000                            82      jcs .L5
+Line 83 ERROR: Undefined symbol
+00000000  4EB9 004DBD16             83      jsr main
+00000006  4E71                      84      nop
+Line 85 ERROR: Invalid syntax
+00000008                            85      move.l -12(%fp),%d2
+Line 86 ERROR: Invalid syntax
+00000008                            86      unlk %fp
+00000008  4E75                      87      rts
+Line 88 ERROR: Invalid opcode
+0000000A                            88      .size   Reset_Handler, .-Reset_Handler
+Line 89 ERROR: Invalid opcode
+0000000A                            89      .align  2
+Line 90 ERROR: Invalid opcode
+0000000A                            90      .globl  Default_Handler
+Line 91 ERROR: Invalid opcode
+0000000A                            91      .type   Default_Handler, @function
+0000000A                            92  Default_Handler:
+Line 93 ERROR: Invalid syntax
+0000000A                            93      link.w %fp,#0
+0000000A  4E71                      94      nop
+Line 95 ERROR: Invalid syntax
+0000000C                            95      unlk %fp
+0000000C  4E75                      96      rts
+Line 97 ERROR: Invalid opcode
+0000000E                            97      .size   Default_Handler, .-Default_Handler
+Line 98 ERROR: Invalid opcode
+0000000E                            98      .align  2
+Line 99 ERROR: Invalid opcode
+0000000E                            99      .weak   Bus_Error_Handler
+Line 100 ERROR: Invalid opcode
+0000000E                           100      .type   Bus_Error_Handler, @function
+0000000E                           101  Bus_Error_Handler:
+Line 102 ERROR: Invalid syntax
+0000000E                           102      link.w %fp,#0
+0000000E  4EB8 000A                103      jsr Default_Handler
+00000012  4E71                     104      nop
+Line 105 ERROR: Invalid syntax
+00000014                           105      unlk %fp
+00000014  4E75                     106      rts
+Line 107 ERROR: Invalid opcode
+00000016                           107      .size   Bus_Error_Handler, .-Bus_Error_Handler
+Line 108 ERROR: Invalid opcode
+00000016                           108      .align  2
+Line 109 ERROR: Invalid opcode
+00000016                           109      .weak   Address_Error_Handler
+Line 110 ERROR: Invalid opcode
+00000016                           110      .type   Address_Error_Handler, @function
+00000016                           111  Address_Error_Handler:
+Line 112 ERROR: Invalid syntax
+00000016                           112      link.w %fp,#0
+00000016  4EB8 000A                113      jsr Default_Handler
+0000001A  4E71                     114      nop
+Line 115 ERROR: Invalid syntax
+0000001C                           115      unlk %fp
+0000001C  4E75                     116      rts
+Line 117 ERROR: Invalid opcode
+0000001E                           117      .size   Address_Error_Handler, .-Address_Error_Handler
+Line 118 ERROR: Invalid opcode
+0000001E                           118      .align  2
+Line 119 ERROR: Invalid opcode
+0000001E                           119      .weak   Illegal_Instruction_Handler
+Line 120 ERROR: Invalid opcode
+0000001E                           120      .type   Illegal_Instruction_Handler, @function
+0000001E                           121  Illegal_Instruction_Handler:
+Line 122 ERROR: Invalid syntax
+0000001E                           122      link.w %fp,#0
+0000001E  4EB8 000A                123      jsr Default_Handler
+00000022  4E71                     124      nop
+Line 125 ERROR: Invalid syntax
+00000024                           125      unlk %fp
+00000024  4E75                     126      rts
+Line 127 ERROR: Invalid opcode
+00000026                           127      .size   Illegal_Instruction_Handler, .-Illegal_Instruction_Handler
+Line 128 ERROR: Invalid opcode
+00000026                           128      .align  2
+Line 129 ERROR: Invalid opcode
+00000026                           129      .weak   Zero_Divide_Handler
+Line 130 ERROR: Invalid opcode
+00000026                           130      .type   Zero_Divide_Handler, @function
+00000026                           131  Zero_Divide_Handler:
+Line 132 ERROR: Invalid syntax
+00000026                           132      link.w %fp,#0
+00000026  4EB8 000A                133      jsr Default_Handler
+0000002A  4E71                     134      nop
+Line 135 ERROR: Invalid syntax
+0000002C                           135      unlk %fp
+0000002C  4E75                     136      rts
+Line 137 ERROR: Invalid opcode
+0000002E                           137      .size   Zero_Divide_Handler, .-Zero_Divide_Handler
+Line 138 ERROR: Invalid opcode
+0000002E                           138      .align  2
+Line 139 ERROR: Invalid opcode
+0000002E                           139      .weak   CHK_Instruction_Handler
+Line 140 ERROR: Invalid opcode
+0000002E                           140      .type   CHK_Instruction_Handler, @function
+0000002E                           141  CHK_Instruction_Handler:
+Line 142 ERROR: Invalid syntax
+0000002E                           142      link.w %fp,#0
+0000002E  4EB8 000A                143      jsr Default_Handler
+00000032  4E71                     144      nop
+Line 145 ERROR: Invalid syntax
+00000034                           145      unlk %fp
+00000034  4E75                     146      rts
+Line 147 ERROR: Invalid opcode
+00000036                           147      .size   CHK_Instruction_Handler, .-CHK_Instruction_Handler
+Line 148 ERROR: Invalid opcode
+00000036                           148      .align  2
+Line 149 ERROR: Invalid opcode
+00000036                           149      .weak   TRAPV_Instruction_Handler
+Line 150 ERROR: Invalid opcode
+00000036                           150      .type   TRAPV_Instruction_Handler, @function
+00000036                           151  TRAPV_Instruction_Handler:
+Line 152 ERROR: Invalid syntax
+00000036                           152      link.w %fp,#0
+00000036  4EB8 000A                153      jsr Default_Handler
+0000003A  4E71                     154      nop
+Line 155 ERROR: Invalid syntax
+0000003C                           155      unlk %fp
+0000003C  4E75                     156      rts
+Line 157 ERROR: Invalid opcode
+0000003E                           157      .size   TRAPV_Instruction_Handler, .-TRAPV_Instruction_Handler
+Line 158 ERROR: Invalid opcode
+0000003E                           158      .align  2
+Line 159 ERROR: Invalid opcode
+0000003E                           159      .weak   Privilege_Violation_Handler
+Line 160 ERROR: Invalid opcode
+0000003E                           160      .type   Privilege_Violation_Handler, @function
+0000003E                           161  Privilege_Violation_Handler:
+Line 162 ERROR: Invalid syntax
+0000003E                           162      link.w %fp,#0
+0000003E  4EB8 000A                163      jsr Default_Handler
+00000042  4E71                     164      nop
+Line 165 ERROR: Invalid syntax
+00000044                           165      unlk %fp
+00000044  4E75                     166      rts
+Line 167 ERROR: Invalid opcode
+00000046                           167      .size   Privilege_Violation_Handler, .-Privilege_Violation_Handler
+Line 168 ERROR: Invalid opcode
+00000046                           168      .align  2
+Line 169 ERROR: Invalid opcode
+00000046                           169      .weak   Trace_Handler
+Line 170 ERROR: Invalid opcode
+00000046                           170      .type   Trace_Handler, @function
+00000046                           171  Trace_Handler:
+Line 172 ERROR: Invalid syntax
+00000046                           172      link.w %fp,#0
+00000046  4EB8 000A                173      jsr Default_Handler
+0000004A  4E71                     174      nop
+Line 175 ERROR: Invalid syntax
+0000004C                           175      unlk %fp
+0000004C  4E75                     176      rts
+Line 177 ERROR: Invalid opcode
+0000004E                           177      .size   Trace_Handler, .-Trace_Handler
+Line 178 ERROR: Invalid opcode
+0000004E                           178      .align  2
+Line 179 ERROR: Invalid opcode
+0000004E                           179      .weak   Line_1010_Emulator_Handler
+Line 180 ERROR: Invalid opcode
+0000004E                           180      .type   Line_1010_Emulator_Handler, @function
+0000004E                           181  Line_1010_Emulator_Handler:
+Line 182 ERROR: Invalid syntax
+0000004E                           182      link.w %fp,#0
+0000004E  4EB8 000A                183      jsr Default_Handler
+00000052  4E71                     184      nop
+Line 185 ERROR: Invalid syntax
+00000054                           185      unlk %fp
+00000054  4E75                     186      rts
+Line 187 ERROR: Invalid opcode
+00000056                           187      .size   Line_1010_Emulator_Handler, .-Line_1010_Emulator_Handler
+Line 188 ERROR: Invalid opcode
+00000056                           188      .align  2
+Line 189 ERROR: Invalid opcode
+00000056                           189      .weak   Line_1111_Emulator_Handler
+Line 190 ERROR: Invalid opcode
+00000056                           190      .type   Line_1111_Emulator_Handler, @function
+00000056                           191  Line_1111_Emulator_Handler:
+Line 192 ERROR: Invalid syntax
+00000056                           192      link.w %fp,#0
+00000056  4EB8 000A                193      jsr Default_Handler
+0000005A  4E71                     194      nop
+Line 195 ERROR: Invalid syntax
+0000005C                           195      unlk %fp
+0000005C  4E75                     196      rts
+Line 197 ERROR: Invalid opcode
+0000005E                           197      .size   Line_1111_Emulator_Handler, .-Line_1111_Emulator_Handler
+Line 198 ERROR: Invalid opcode
+0000005E                           198      .align  2
+Line 199 ERROR: Invalid opcode
+0000005E                           199      .weak   Level1_Interrupt_Auto_Vector_Handler
+Line 200 ERROR: Invalid opcode
+0000005E                           200      .type   Level1_Interrupt_Auto_Vector_Handler, @function
+Line 201 WARNING: Label too long
+0000005E                           201  Level1_Interrupt_Auto_Vector_Handler:
+Line 202 ERROR: Invalid syntax
+0000005E                           202      link.w %fp,#0
+0000005E  4EB8 000A                203      jsr Default_Handler
+00000062  4E71                     204      nop
+Line 205 ERROR: Invalid syntax
+00000064                           205      unlk %fp
+00000064  4E75                     206      rts
+Line 207 ERROR: Invalid opcode
+00000066                           207      .size   Level1_Interrupt_Auto_Vector_Handler, .-Level1_Interrupt_Auto_Vector_Handler
+Line 208 ERROR: Invalid opcode
+00000066                           208      .align  2
+Line 209 ERROR: Invalid opcode
+00000066                           209      .weak   Level2_Interrupt_Auto_Vector_Handler
+Line 210 ERROR: Invalid opcode
+00000066                           210      .type   Level2_Interrupt_Auto_Vector_Handler, @function
+Line 211 WARNING: Label too long
+00000066                           211  Level2_Interrupt_Auto_Vector_Handler:
+Line 212 ERROR: Invalid syntax
+00000066                           212      link.w %fp,#0
+00000066  4EB8 000A                213      jsr Default_Handler
+0000006A  4E71                     214      nop
+Line 215 ERROR: Invalid syntax
+0000006C                           215      unlk %fp
+0000006C  4E75                     216      rts
+Line 217 ERROR: Invalid opcode
+0000006E                           217      .size   Level2_Interrupt_Auto_Vector_Handler, .-Level2_Interrupt_Auto_Vector_Handler
+Line 218 ERROR: Invalid opcode
+0000006E                           218      .align  2
+Line 219 ERROR: Invalid opcode
+0000006E                           219      .weak   Level3_Interrupt_Auto_Vector_Handler
+Line 220 ERROR: Invalid opcode
+0000006E                           220      .type   Level3_Interrupt_Auto_Vector_Handler, @function
+Line 221 WARNING: Label too long
+0000006E                           221  Level3_Interrupt_Auto_Vector_Handler:
+Line 222 ERROR: Invalid syntax
+0000006E                           222      link.w %fp,#0
+0000006E  4EB8 000A                223      jsr Default_Handler
+00000072  4E71                     224      nop
+Line 225 ERROR: Invalid syntax
+00000074                           225      unlk %fp
+00000074  4E75                     226      rts
+Line 227 ERROR: Invalid opcode
+00000076                           227      .size   Level3_Interrupt_Auto_Vector_Handler, .-Level3_Interrupt_Auto_Vector_Handler
+Line 228 ERROR: Invalid opcode
+00000076                           228      .align  2
+Line 229 ERROR: Invalid opcode
+00000076                           229      .weak   Level4_Interrupt_Auto_Vector_Handler
+Line 230 ERROR: Invalid opcode
+00000076                           230      .type   Level4_Interrupt_Auto_Vector_Handler, @function
+Line 231 WARNING: Label too long
+00000076                           231  Level4_Interrupt_Auto_Vector_Handler:
+Line 232 ERROR: Invalid syntax
+00000076                           232      link.w %fp,#0
+00000076  4EB8 000A                233      jsr Default_Handler
+0000007A  4E71                     234      nop
+Line 235 ERROR: Invalid syntax
+0000007C                           235      unlk %fp
+0000007C  4E75                     236      rts
+Line 237 ERROR: Invalid opcode
+0000007E                           237      .size   Level4_Interrupt_Auto_Vector_Handler, .-Level4_Interrupt_Auto_Vector_Handler
+Line 238 ERROR: Invalid opcode
+0000007E                           238      .align  2
+Line 239 ERROR: Invalid opcode
+0000007E                           239      .weak   Level5_Interrupt_Auto_Vector_Handler
+Line 240 ERROR: Invalid opcode
+0000007E                           240      .type   Level5_Interrupt_Auto_Vector_Handler, @function
+Line 241 WARNING: Label too long
+0000007E                           241  Level5_Interrupt_Auto_Vector_Handler:
+Line 242 ERROR: Invalid syntax
+0000007E                           242      link.w %fp,#0
+0000007E  4EB8 000A                243      jsr Default_Handler
+00000082  4E71                     244      nop
+Line 245 ERROR: Invalid syntax
+00000084                           245      unlk %fp
+00000084  4E75                     246      rts
+Line 247 ERROR: Invalid opcode
+00000086                           247      .size   Level5_Interrupt_Auto_Vector_Handler, .-Level5_Interrupt_Auto_Vector_Handler
+Line 248 ERROR: Invalid opcode
+00000086                           248      .align  2
+Line 249 ERROR: Invalid opcode
+00000086                           249      .weak   Level6_Interrupt_Auto_Vector_Handler
+Line 250 ERROR: Invalid opcode
+00000086                           250      .type   Level6_Interrupt_Auto_Vector_Handler, @function
+Line 251 WARNING: Label too long
+00000086                           251  Level6_Interrupt_Auto_Vector_Handler:
+Line 252 ERROR: Invalid syntax
+00000086                           252      link.w %fp,#0
+00000086  4EB8 000A                253      jsr Default_Handler
+0000008A  4E71                     254      nop
+Line 255 ERROR: Invalid syntax
+0000008C                           255      unlk %fp
+0000008C  4E75                     256      rts
+Line 257 ERROR: Invalid opcode
+0000008E                           257      .size   Level6_Interrupt_Auto_Vector_Handler, .-Level6_Interrupt_Auto_Vector_Handler
+Line 258 ERROR: Invalid opcode
+0000008E                           258      .align  2
+Line 259 ERROR: Invalid opcode
+0000008E                           259      .weak   Level7_Interrupt_Auto_Vector_Handler
+Line 260 ERROR: Invalid opcode
+0000008E                           260      .type   Level7_Interrupt_Auto_Vector_Handler, @function
+Line 261 WARNING: Label too long
+0000008E                           261  Level7_Interrupt_Auto_Vector_Handler:
+Line 262 ERROR: Invalid syntax
+0000008E                           262      link.w %fp,#0
+0000008E  4EB8 000A                263      jsr Default_Handler
+00000092  4E71                     264      nop
+Line 265 ERROR: Invalid syntax
+00000094                           265      unlk %fp
+00000094  4E75                     266      rts
+Line 267 ERROR: Invalid opcode
+00000096                           267      .size   Level7_Interrupt_Auto_Vector_Handler, .-Level7_Interrupt_Auto_Vector_Handler
+Line 268 ERROR: Invalid opcode
+00000096                           268      .ident  "GCC: (GNU) 13.2.0"
+Line 269 WARNING: END directive missing, starting address not set
+
+189 errors detected
+8 warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+ADDRESS_ERROR_HANDLER  16
+BUS_ERROR_HANDLER   E
+CHK_INSTRUCTION_HANDLER  2E
+DEFAULT_HANDLER     A
+ILLEGAL_INSTRUCTION_HANDLER  1E
+ISR_VECTORS         0
+LEVEL1_INTERRUPT_AUTO_VECTOR_HAND  5E
+LEVEL2_INTERRUPT_AUTO_VECTOR_HAND  66
+LEVEL3_INTERRUPT_AUTO_VECTOR_HAND  6E
+LEVEL4_INTERRUPT_AUTO_VECTOR_HAND  76
+LEVEL5_INTERRUPT_AUTO_VECTOR_HAND  7E
+LEVEL6_INTERRUPT_AUTO_VECTOR_HAND  86
+LEVEL7_INTERRUPT_AUTO_VECTOR_HAND  8E
+LINE_1010_EMULATOR_HANDLER  4E
+LINE_1111_EMULATOR_HANDLER  56
+PRIVILEGE_VIOLATION_HANDLER  3E
+RESET_HANDLER       0
+RESET_HANDLER:L2    0
+RESET_HANDLER:L3    0
+RESET_HANDLER:L4    0
+RESET_HANDLER:L5    0
+TRACE_HANDLER       46
+TRAPV_INSTRUCTION_HANDLER  36
+ZERO_DIVIDE_HANDLER  26
+#APP                3393A10
+#NO_APP             3392FC4
