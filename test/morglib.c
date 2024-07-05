@@ -181,6 +181,7 @@ void wr(char args[num_of_cmds][arg_length], int num_of_args) {
 	}
 }
 
+uint32_t srec_start_address = 0;
 void ld(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 1)
 		serial_print("Error: Invalid Arguments.\n\rUsage: ld\n\r");
@@ -188,13 +189,19 @@ void ld(char args[num_of_cmds][arg_length], int num_of_args) {
 	{
 		serial_print("Enter the S-Record:\n\r");
 		get_string();
-		write_srecord(input_buffer);
+		srec_start_address = write_srecord(input_buffer);
 	}
 }
 
 void run(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 1)
+	{
 		serial_print("Error: Invalid Arguments.\n\rUsage: run\n\r");
+	}
+	else
+	{
+		run_srec(srec_start_address);
+	}
 }
 
 void exit_morg(char args[num_of_cmds][arg_length], int num_of_args)

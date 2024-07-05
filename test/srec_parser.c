@@ -182,8 +182,8 @@ uint32_t write_srecord(char* srec)
 		}
 		else if (s.type == s7 || s.type == s8 || s.type == s9)
 		{
-			serial_print("Termination record found...\n\r");
-			serial_print("Data Wrote Successfully\n\r");
+			serial_print("Termination record found...\n\r"
+				"Data Wrote Successfully\n\r");
 			return s.start_address;
 		}
 		else if (s.type == s0) {}
@@ -237,4 +237,10 @@ char get_checksum(char* srec_line, const int length)
 
 	char checksum = (char) (0xFF - (sum & 0xFF));
 	return checksum;
+}
+
+void run_srec(uint32_t start_address)
+{
+	((void (*)(void))start_address)();
+	return;
 }

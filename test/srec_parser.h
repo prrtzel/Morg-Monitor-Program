@@ -48,7 +48,8 @@ typedef struct srecord {
 int find_address_sum(char* str, const int length);
 void parse_srec_line(char* srec, srecord* srec_struct);
 char get_checksum(char* srec_line, const int length);
-//only public function
+//public functions
 extern uint32_t write_srecord(char* srec);
+extern void run_srec(uint32_t start_address);
 
 #endif
