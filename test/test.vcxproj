@@ -128,11 +128,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="commands.c" />
     <ClCompile Include="conversions.c" />
     <ClCompile Include="crt0.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="mem.c" />
     <ClCompile Include="morgio.c" />
     <ClCompile Include="morglib.c" />
+    <ClCompile Include="registers.c" />
     <ClCompile Include="srec_parser.c" />
   </ItemGroup>
   <ItemGroup>
@@ -146,12 +149,15 @@
     <Text Include="notes.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="commands.h" />
     <ClInclude Include="conversions.h" />
     <ClInclude Include="crt0.h" />
     <ClInclude Include="envctrl.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="mem.h" />
     <ClInclude Include="morgio.h" />
     <ClInclude Include="morglib.h" />
+    <ClInclude Include="registers.h" />
     <ClInclude Include="srec_parser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
