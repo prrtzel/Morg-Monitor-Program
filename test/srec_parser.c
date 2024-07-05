@@ -120,6 +120,23 @@ uint32_t write_srecord(char* srec)
 {
 	char* ptr = &srec[0];
 
+	// Loading bar
+	int num_of_records = 0;
+	int num_of_srec_written = 0;
+
+	// Get the number of records
+	while (*srec != '\0')
+	{
+		if (*srec == 'S')
+			num_of_records++;
+		srec++;
+	}
+	char num_of_records_str[3];
+	binary_to_ascii_hex(num_of_records, num_of_records_str, 2);
+	num_of_records_str[2] = '\0';
+	serial_print(num_of_records_str);
+	serial_print(" Records Found\n\r\n\r");
+
 	while (true)
 	{
 		srecord s;
@@ -132,8 +149,8 @@ uint32_t write_srecord(char* srec)
 		}
 		else if (s.type == s1 || s.type == s2 || s.type == s3)
 		{
-			// TODO Convert to loading bar
-			serial_print("Writing to Memory...\n\r");
+			num_of_srec_written++;
+			disp_srec_loading_bar(num_of_records, num_of_srec_written);
 			// Write the data to memory
 			for (int i = 0; i < s.data_length; i++)
 			{
@@ -143,12 +160,16 @@ uint32_t write_srecord(char* srec)
 		}
 		else if (s.type == s7 || s.type == s8 || s.type == s9)
 		{
-			serial_print("Termination record found...\n\r"
+			num_of_srec_written++;
+			disp_srec_loading_bar(num_of_records, num_of_srec_written);
+			serial_print("\n\rTermination record found...\n\r"
 				"Data Wrote Successfully\n\rUse the 'run' command to run the program\n\r");
 			return s.start_address;
 		}
 		else if (s.type == s0)
 		{
+			num_of_srec_written++;
+			disp_srec_loading_bar(num_of_records, num_of_srec_written);
 			// TODO display program name
 		}
 		else break;
@@ -191,4 +212,19 @@ void run_srec(uint32_t start_address)
 {
 	((void (*)(void))start_address)();
 	return;
+}
+
+void disp_srec_loading_bar(int num_of_records, int num_of_srec_written)
+{
+	char num_of_records_str[3];
+	binary_to_ascii_hex(num_of_records, num_of_records_str, 2);
+	num_of_records_str[2] = '\0';
+
+	char num_of_srec_written_str[3];
+	binary_to_ascii_hex(num_of_srec_written, num_of_srec_written_str, 2);
+	num_of_srec_written_str[2] = '\0';
+	serial_print(num_of_srec_written_str);
+	serial_print(" out of ");
+	serial_print(num_of_records_str);
+	serial_print(" Records Written\n\r");
 }

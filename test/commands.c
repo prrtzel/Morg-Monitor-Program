@@ -178,7 +178,7 @@ void parse_cmd(void)
 		}
 	}
 
-	split_str(input_buffer, args);
+	split_str_cmd(input_buffer, args);
 
 	//find number of args
 	int num_of_args = 0;
