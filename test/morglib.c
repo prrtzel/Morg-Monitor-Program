@@ -288,7 +288,6 @@ void mem_dump(uint32_t starting_address, uint32_t ending_address)
 void write_memory(uint32_t address, const char data) {
 	char* address_pointer = (char*)address; //NOLINT
 	*address_pointer = data;
-	serial_print("Data Wrote Successfully\n\r");
 }
 
 #pragma endregion
