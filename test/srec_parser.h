@@ -91,4 +91,6 @@ uint32_t write_srecord(char* srec);
  */
 void run_srec(uint32_t start_address);
 
+void disp_srec_loading_bar(int num_of_records, int num_of_srec_written);
+
 #endif

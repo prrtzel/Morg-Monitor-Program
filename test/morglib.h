@@ -15,7 +15,7 @@ extern void clear_buffer(char* buffer, const int size);
 
 int get_str_length(const char* string);
 
-void split_str(const char* str, char split_string_array[num_of_cmds][arg_length]);
+void split_str_cmd(const char* str, char split_string_array[num_of_cmds][arg_length]);
 
 bool cmp_str(const char* str1, const char* str2);
 

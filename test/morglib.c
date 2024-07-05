@@ -18,7 +18,7 @@ int get_str_length(const char* string) {
 	return i;
 }
 
-void split_str(const char* str, char split_string_array[num_of_cmds][arg_length]) {
+void split_str_cmd(const char* str, char split_string_array[num_of_cmds][arg_length]) {
 	const int str_length = get_str_length(str);
 
 	// counters and index vars
