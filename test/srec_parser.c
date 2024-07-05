@@ -177,6 +177,7 @@ uint32_t write_srecord(char* srec)
 			for (int i = 0; i < s.data_length; i++)
 			{
 				write_memory(s.address, s.data[i]);
+				s.address++;
 			}
 		}
 		else if (s.type == s7 || s.type == s8 || s.type == s9)
