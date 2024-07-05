@@ -2,8 +2,9 @@
 #include "conversions.h"
 #include "morgio.h"
 #include "morglib.h"
+#include "mem.h"
+#include "commands.h"
 
-#define DBUG
 const struct
 {
 	const char* srec_type_str;
@@ -17,7 +18,6 @@ const struct
 	{"S8", s8},
 	{"S9", s9}
 };
-
 
 // ReSharper disable once CppParameterMayBeConstPtrOrRef
 void parse_srec_line(char* srec, srecord* srec_struct)
@@ -144,7 +144,7 @@ uint32_t write_srecord(char* srec)
 		else if (s.type == s7 || s.type == s8 || s.type == s9)
 		{
 			serial_print("Termination record found...\n\r"
-				"Data Wrote Successfully\n\r");
+				"Data Wrote Successfully\n\rUse the 'run' command to run the program\n\r");
 			return s.start_address;
 		}
 		else if (s.type == s0)

@@ -1,12 +1,12 @@
-/* S-Record Parser
- * Morg only uses S0, S1, and S9 records
- * Will implement support for others if needed
- */
 #ifndef SREC_PARSER_H
 #define SREC_PARSER_H
 #include <stdint.h>
-#include <stdbool.h>
 
+//--------------------------------------------------------
+// Public Functions / Variables
+/**
+ * Length/Size Definitions for S-Record items
+ */
 enum srec_lengths
 {
 	type_length = 2,
@@ -18,7 +18,9 @@ enum srec_lengths
 	byte_length = 2
 };
 
-
+/**
+ * S-Record Types
+ */
 typedef enum srecord_type {
 	s0,
 	s1,
@@ -31,9 +33,10 @@ typedef enum srecord_type {
 	num_of_types
 }srecord_type;
 
-
-
-
+/**
+ * Struct defining an S-Record
+ along with useful information
+ */
 typedef struct srecord {
 	srecord_type type;
 	char byte_count;
@@ -45,11 +48,47 @@ typedef struct srecord {
 	char data_length;
 } srecord;
 
+/**
+ * @name get_srec_type
+ * @brief Get the S-Record type from the S-Record string
+ * @param str 
+ * @return 
+ */
 srecord_type get_srec_type(char* str);
+
+/**
+ * @name parse_srec_line
+ * @brief Parse an S-Record line into an S-Record struct
+ * @param srec srecord string
+ * @param srec_struct srec struct buffer to store output
+ */
 void parse_srec_line(char* srec, srecord* srec_struct);
+
+/**
+ * @name get_checksum
+ * @brief Calculate the checksum of an S-Record line
+ * @param srec_line S-Record line string
+ * @param length Length of the S-Record line
+ * @return checksum
+ */
 char get_checksum(char* srec_line, const int length);
-//public functions
-extern uint32_t write_srecord(char* srec);
-extern void run_srec(uint32_t start_address);
+
+//--------------------------------------------------------
+// Public Functions
+
+/**
+ * @name write_srecord
+ * @brief Write an S-Record to memory
+ * @param srec srecord string
+ * @return start address of the S-Record program
+ */
+uint32_t write_srecord(char* srec);
+
+/**
+ * @name run_srec
+ * @brief Run an S-Record program
+ * @param start_address start address of the S-Record program
+ */
+void run_srec(uint32_t start_address);
 
 #endif

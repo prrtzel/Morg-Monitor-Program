@@ -1,4 +1,4 @@
-#include "morglib.h"
+#include "commands.h"
 #include "morgio.h"
 
 int main(void)

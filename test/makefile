@@ -2,14 +2,14 @@
 # Test project for MCD Rev 2
 
 LINKER := linker.ld
-FILES := main crt0 morgio conversions morglib srec_parser
+FILES := main crt0 morgio conversions morglib srec_parser commands registers mem
 OUTPUT_FILES := $(foreach file, $(FILES), $(file).o)
 CMD_SEPERATOR := &
 
 
 all: gcc link clean done
 gcc:
-	$(foreach file, $(FILES), m68k-elf-gcc -Wall -g $(file).c -c -m68000 -o $(file).o -ffreestanding $(CMD_SEPERATOR))
+	$(foreach file, $(FILES), m68k-elf-gcc -Wall -g $(file).c -m68000 -c -o $(file).o -ffreestanding;)
 link:
 	m68k-elf-ld -o morg.S68 -T $(LINKER) $(OUTPUT_FILES)
 clean:
