@@ -201,6 +201,7 @@ void run(char args[num_of_cmds][arg_length], int num_of_args) {
 	else
 	{
 		run_srec(srec_start_address);
+		serial_print("\n\r");
 	}
 }
 

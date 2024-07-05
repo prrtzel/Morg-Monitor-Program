@@ -32,7 +32,7 @@ typedef enum srecord_type {
 }srecord_type;
 
 
-srecord_type get_srec_type(char* str);
+
 
 typedef struct srecord {
 	srecord_type type;
@@ -45,7 +45,7 @@ typedef struct srecord {
 	char data_length;
 } srecord;
 
-int find_address_sum(char* str, const int length);
+srecord_type get_srec_type(char* str);
 void parse_srec_line(char* srec, srecord* srec_struct);
 char get_checksum(char* srec_line, const int length);
 //public functions
