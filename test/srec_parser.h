@@ -28,6 +28,7 @@ typedef enum srecord_type {
 	s8,
 	s9,
 	error,
+	num_of_types
 }srecord_type;
 
 
@@ -45,9 +46,9 @@ typedef struct srecord {
 } srecord;
 
 int find_address_sum(char* str, const int length);
-bool verify_checksum(const int sum, const char checksum);
 void parse_srec_line(char* srec, srecord* srec_struct);
-
+char get_checksum(char* srec_line, const int length);
 //only public function
 extern uint32_t write_srecord(char* srec);
+
 #endif
