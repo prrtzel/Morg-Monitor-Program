@@ -186,7 +186,7 @@ void ld(char args[num_of_cmds][arg_length], int num_of_args) {
 		serial_print("Error: Invalid Arguments.\n\rUsage: ld\n\r");
 	else
 	{
-		serial_print("Enter the S-Record:\n\r")
+		serial_print("Enter the S-Record:\n\r");
 		get_string();
 		write_srecord(input_buffer);
 	}

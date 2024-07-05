@@ -54,6 +54,9 @@
     <None Include="morg.S68">
       <Filter>build</Filter>
     </None>
+    <None Include="elf_linker.ld">
+      <Filter>etc</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />

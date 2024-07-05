@@ -24,10 +24,10 @@ typedef enum srecord_type {
 	s1,
 	s2,
 	s3,
-	s5,
 	s7,
 	s8,
-	s9
+	s9,
+	error,
 }srecord_type;
 
 
