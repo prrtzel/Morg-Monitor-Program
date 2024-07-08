@@ -78,9 +78,6 @@
     <None Include="morg.S68">
       <Filter>build</Filter>
     </None>
-    <None Include="elf_linker.ld">
-      <Filter>etc</Filter>
-    </None>
     <None Include="morg.bat">
       <Filter>Scripts\Run Sim</Filter>
     </None>

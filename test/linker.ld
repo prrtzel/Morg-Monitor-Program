@@ -1,6 +1,5 @@
 ENTRY(Reset_Handler)
 OUTPUT_ARCH(m68k)
-OUTPUT_FORMAT(srec)
 
 MEMORY
 {
@@ -13,14 +12,14 @@ PROVIDE(end_stack = 0x00100000 + 0x0001FFF0);
 
 SECTIONS
 {
-    .isr_vec :
+    .isr_vec (READONLY) :
     {
         . = ALIGN(4);
-        *(.isr_vec)
+        KEEP(*(.isr_vec))
         . = ALIGN(4);
     }> ROM
 
-    .text :
+    .text (READONLY) :
     {
         . = ALIGN(4);
         *(.text)
