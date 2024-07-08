@@ -7,6 +7,9 @@ static char* str_ptr_buffer;
 // get_char buffer
 static char get_char_buffer;
 
+// putc buffer
+static char putc_buffer;
+
 char input_buffer[input_buffer_size];
 char output_buffer[output_buffer_size];
 
@@ -15,6 +18,18 @@ void serial_print(const char* str_ptr) {
 #ifdef SIM
     __asm("move.l  str_ptr_buffer, % a1\n\t\t"
           "move.b  #14, % d0\n\t\t"
+          "trap    #15");
+#endif  
+#ifdef HW
+#endif
+}
+
+
+void putc(const char c) {
+    putc_buffer = c; //NOLINT
+#ifdef SIM
+    __asm("move.l  putc_buffer, % a1\n\t\t"
+          "move.b  #6, % d0\n\t\t"
           "trap    #15");
 #endif  
 #ifdef HW

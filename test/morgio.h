@@ -47,6 +47,8 @@ extern char get_char(void);
  */
 extern void get_string(void);
 
+void putc(const char c);
+
 
 void get_input(void);
 #endif

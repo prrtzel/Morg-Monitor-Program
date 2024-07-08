@@ -22,3 +22,5 @@ dbug: gcc
 	m68k-elf-ld -o morg.elf -T elf_linker.ld $(OUTPUT_FILES)
 	echo "ALL DONE :)"
 	m68k-elf-gdb morg.elf
+deploy:
+	cmd.exe /c deploy.bat

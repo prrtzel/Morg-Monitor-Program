@@ -5,6 +5,8 @@
 #include "commands.h"
 
 
+int char_to_binary(char c);
+
 /**
  * @brief clears a given array/buffer to 0
  *
