@@ -2,6 +2,7 @@
 #include "conversions.h"
 #include <stdint.h>
 #include "morglib.h"
+#include <stdbool.h>
 
 extern uint32_t ascii_hex_to_bin(const char* ascii_buffer, int length) {
     uint32_t result = 0;
@@ -66,3 +67,60 @@ extern void binary_to_ascii_hex(const uint32_t binary_value, char* str_buffer, c
     }
     str_buffer[length] = 0;
 }
+
+
+//typedef enum base {
+//    hex,
+//    decimal
+//}base;
+//
+//bool is_digit(char c)
+//{
+//    return (c >= '0' && c <= '9' ? true : false);
+//}
+//
+//bool is_hex(char c)
+//{
+//    return  (c >= '0' && c <= '9') ||
+//			(c >= 'a' && c <= 'f') ||
+//			(c >= 'A' && c <= 'F') ? true : false;
+//}
+//
+//int char_to_binary(char c)
+//{
+//    return c - '0';
+//}
+//
+//uint32_t ascii_to_binary(char* str, base b)
+//{
+//    int l = 0;
+//
+//    if (b == hex)
+//    {
+//        //find size of number
+//        while (is_hex(*str++))
+//        {
+//            l++;
+//        }
+//        return ascii_hex_to_bin(str, l);
+//    }
+//}
+//
+//int find_binary_length(unsigned x) {
+//    if (x >= 1000000000) return 10;
+//    if (x >= 100000000)  return 9;
+//    if (x >= 10000000)   return 8;
+//    if (x >= 1000000)    return 7;
+//    if (x >= 100000)     return 6;
+//    if (x >= 10000)      return 5;
+//    if (x >= 1000)       return 4;
+//    if (x >= 100)        return 3;
+//    if (x >= 10)         return 2;
+//    return 1;
+//}
+//
+//void binary_to_ascii_dec(uint32_t binary_value, char* buffer)
+//{
+//    int l = find_binary_length(binary_value);
+//    
+//}

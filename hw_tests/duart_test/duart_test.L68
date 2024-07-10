@@ -1,0 +1,112 @@
+00000208 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 7/9/2024 4:19:09 PM
+
+00000000  =00100000                  1  DUART   EQU     $00100000  loaded in A0 when needed, regs are offsets 
+00000000  =00000001                  2  MR1A    EQU     1   Mode Register1 
+00000000  =00000001                  3  MR2A    EQU     1   points here after MR1A is set 
+00000000  =00000003                  4  SRA     EQU     3   Status Register (read) 
+00000000  =00000003                  5  CSRA    EQU     3   Clock Select Register 
+00000000  =00000005                  6  CRA     EQU     5   Command Register 
+00000000  =00000007                  7  TBA     EQU     7   Transfer Holding Register 
+00000000  =00000007                  8  RBA     EQU     7   Receive Holding Register 
+00000000  =00000009                  9  ACR     EQU     9   Auxiliary control register 
+00000000  =0000000B                 10  IMR     EQU     11  Interrupt Mask Register
+00000000  =00000000                 11  RxRDY   EQU     0   Recieve ready bit position 
+00000000  =00000002                 12  TxRDY   EQU     2   Transmit ready bit position 
+00000000  =000000CC                 13  BAUD    EQU     $CC baud rate value = 19,200 baud 
+00000000  =0008FFF0                 14  SUPER_STACK EQU $8FFF0
+00000000                            15  
+00000000                            16  
+00000000                            17  START   ORG $000000
+00000000= 0008FFF0                  18          DC.L SUPER_STACK
+00000004= 00000200                  19          DC.L INIT
+00000008                            20      
+00000200                            21          ORG $000200
+00000200                            22  INIT
+00000200  4E71                      23          NOP 
+00000202  4EB9 00000212             24          JSR INIT_DUART
+00000208                            25  LOOP
+00000208  4EB9 0000025C             26      JSR GET_CHAR
+0000020E  4EF8 0208                 27      JMP LOOP
+00000212                            28  
+00000212                            29  INIT_DUART 
+00000212  41F9 00100000             30      LEA     DUART,A0        A0 points to base DUART address 
+00000218                            31  
+00000218                            32  ; Software reset: 
+00000218  117C 0050 0005            33      MOVE.B  #$50,CRA(A0)    Reset Break Change Interrupt
+0000021E  117C 0040 0005            34      MOVE.B  #$40,CRA(A0)    Reset Error Status
+00000224  117C 0030 0005            35      MOVE.B  #$30,CRA(A0)    Reset TxA 
+0000022A  117C 0020 0005            36      MOVE.B  #$20,CRA(A0)    Reset RxA 
+00000230  117C 0010 0005            37      MOVE.B  #$10,CRA(A0)    Reset MRA pointer 
+00000236                            38  
+00000236                            39  ; Initialization:
+00000236  117C 0000 000B            40      MOVE.B  #$00,IMR(A0)    disables IMR
+0000023C  117C 0080 0009            41      MOVE.B  #$80,ACR(A0)    selects baud rate set 2
+00000242  117C 00CC 0003            42      MOVE.B  #BAUD,CSRA(A0) set 19.2k baud Rx/Tx 
+00000248  117C 0013 0001            43      MOVE.B  #$13,MR1A(A0)   8-bits, no parity, 1 stop bit 
+0000024E                            44  
+0000024E                            45   
+0000024E                            46  ; This is the most important register to set in the 68681 DUART. 
+0000024E                            47  ; 07 sets: Normal mode, CTS and RTS disabled, stop bit length = 1 
+0000024E                            48  ; For testing load $#47 to enable auto-echo 
+0000024E                            49  
+0000024E  117C 0007 0001            50      MOVE.B  #$07,MR2A(A0)    
+00000254  117C 0005 0005            51      MOVE.B  #$05,CRA(A0)    enable Tx and Rx 
+0000025A  4E75                      52      RTS     
+0000025C                            53      
+0000025C                            54  GET_CHAR
+0000025C  2F01                      55      MOVE.L  D1, -(SP) 
+0000025E                            56  IN_POLL
+0000025E  2228 0003                 57      MOVE.L  SRA(A0),D1 
+00000262  0801 0000                 58      BTST    #0,D1 
+00000266  67F6                      59      BEQ     IN_POLL 
+00000268  2628 0007                 60      MOVE.L  RBA(A0),D3 
+0000026C  4EB9 00000276             61      JSR     PUT_CHAR
+00000272                            62      
+00000272  221F                      63      MOVE.L  (SP)+,D1
+00000274  4E75                      64      RTS 
+00000276                            65  
+00000276                            66  
+00000276                            67  PUT_CHAR
+00000276  2F02                      68      MOVE.L  D2, -(SP) 
+00000278                            69  OUT_POLL
+00000278  2428 0003                 70      MOVE.L  SRA(A0),D2 
+0000027C  0802 0002                 71      BTST    #2,D2 
+00000280  67F6                      72      BEQ     OUT_POLL 
+00000282  2143 0007                 73      MOVE.L  D3,TBA(A0) 
+00000286                            74      
+00000286  241F                      75      MOVE.L  (SP)+,D2
+00000288  4E75                      76      RTS
+0000028A                            77      
+0000028A                            78      END LOOP
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+ACR                 9
+BAUD                CC
+CRA                 5
+CSRA                3
+DUART               100000
+GET_CHAR            25C
+IMR                 B
+INIT                200
+INIT_DUART          212
+IN_POLL             25E
+LOOP                208
+MR1A                1
+MR2A                1
+OUT_POLL            278
+PUT_CHAR            276
+RBA                 7
+RXRDY               0
+SRA                 3
+START               0
+SUPER_STACK         8FFF0
+TBA                 7
+TXRDY               2

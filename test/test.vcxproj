@@ -139,11 +139,20 @@
     <ClCompile Include="srec_parser.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="elf_linker.ld" />
+    <None Include="call_xgpro.bat" />
     <None Include="linker.ld" />
     <None Include="makefile" />
+    <None Include="deploy.bat" />
     <None Include="morg.bat" />
+    <None Include="morg.BIN" />
     <None Include="morg.S68" />
+    <None Include="call_easybin.bat" />
+    <None Include="open_morg_bin.bat" />
+    <None Include="open_morg_bin.vbs" />
+    <None Include="save_morg_bin.bat" />
+    <None Include="save_morg_bin.vbs" />
+    <None Include="srecord.ahk" />
+    <None Include="srecord.exe" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />

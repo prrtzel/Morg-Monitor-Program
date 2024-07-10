@@ -19,8 +19,23 @@
     <Filter Include="build">
       <UniqueIdentifier>{5758e179-3353-48a6-afa3-8f368c667a59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="bat">
+    <Filter Include="Scripts">
       <UniqueIdentifier>{54c094e5-71d3-4cfd-80c6-c93df0753197}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Run Sim">
+      <UniqueIdentifier>{fcaef679-5f6f-4325-b4f1-df1b9a65938a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Deploy HW">
+      <UniqueIdentifier>{ece5e9c7-5eea-48ee-a82d-e9cfac4349db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Deploy HW\bat">
+      <UniqueIdentifier>{f56f5be0-7e46-4b82-963b-d1b7ade01327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Deploy HW\vbs">
+      <UniqueIdentifier>{138b1233-bd58-44ca-a909-4e199b2bb9ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Input S-Record">
+      <UniqueIdentifier>{f0be9949-c587-4e84-b0ed-630eb22ebcb1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,14 +72,41 @@
       <Filter>etc</Filter>
     </None>
     <None Include="makefile" />
-    <None Include="morg.bat">
-      <Filter>bat</Filter>
-    </None>
     <None Include="morg.S68">
       <Filter>build</Filter>
     </None>
-    <None Include="elf_linker.ld">
-      <Filter>etc</Filter>
+    <None Include="morg.bat">
+      <Filter>Scripts\Run Sim</Filter>
+    </None>
+    <None Include="call_xgpro.bat">
+      <Filter>Scripts\Deploy HW\bat</Filter>
+    </None>
+    <None Include="deploy.bat">
+      <Filter>Scripts\Deploy HW\bat</Filter>
+    </None>
+    <None Include="call_easybin.bat">
+      <Filter>Scripts\Deploy HW\bat</Filter>
+    </None>
+    <None Include="open_morg_bin.bat">
+      <Filter>Scripts\Deploy HW\bat</Filter>
+    </None>
+    <None Include="save_morg_bin.bat">
+      <Filter>Scripts\Deploy HW\bat</Filter>
+    </None>
+    <None Include="open_morg_bin.vbs">
+      <Filter>Scripts\Deploy HW\vbs</Filter>
+    </None>
+    <None Include="save_morg_bin.vbs">
+      <Filter>Scripts\Deploy HW\vbs</Filter>
+    </None>
+    <None Include="morg.BIN">
+      <Filter>build</Filter>
+    </None>
+    <None Include="srecord.ahk">
+      <Filter>Scripts\Input S-Record</Filter>
+    </None>
+    <None Include="srecord.exe">
+      <Filter>Scripts\Input S-Record</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

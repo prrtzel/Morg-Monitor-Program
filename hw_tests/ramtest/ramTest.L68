@@ -1,0 +1,55 @@
+00000200 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 7/9/2024 3:21:48 PM
+
+00000000                             1  *----------------------------------------------------------- 
+00000000                             2  
+00000000                             3  * Program    : Test Loop 
+00000000                             4  
+00000000                             5  * Written by : Instructor 
+00000000                             6  
+00000000                             7  * Date       : 2010 
+00000000                             8  
+00000000                             9  * Description: Testing RAM with a subroutine jump. To jump 
+00000000                            10  
+00000000                            11  *              to a subroutine, the PC and SR are pushed onto 
+00000000                            12  
+00000000                            13  *              the stack which is a location in RAM. If the 
+00000000                            14  
+00000000                            15  *              program continually loops, the RAM is working 
+00000000                            16  
+00000000                            17  *----------------------------------------------------------- 
+00000000                            18  
+00000000                            19   
+00000000                            20  
+00000000                            21   
+00000000                            22  
+00000000                            23   
+00000000                            24  
+00000000  =0008FFF0                 25  SUPER_STACK     EQU     $0008fff0   ; MUST BE A VALID RAM LOCATION 
+00000000                            26  
+00000000                            27  START       ORG     $000000 
+00000000= 0008FFF0                  28              DC.L    SUPER_STACK 
+00000004= 00000200                  29              DC.L    MAIN
+00000008                            30   
+00000200                            31              ORG     $000200         
+00000200  4EB9 0000020A             32  MAIN        JSR     RAM_TEST 
+00000206  4EF8 0200                 33              JMP     MAIN 
+0000020A                            34  
+0000020A  4E71                      35  RAM_TEST    NOP 
+0000020C  4E71                      36              NOP 
+0000020E  4E71                      37              NOP 
+00000210  4E75                      38              RTS 
+00000212                            39              END     MAIN 
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+MAIN                200
+RAM_TEST            20A
+START               0
+SUPER_STACK         8FFF0
