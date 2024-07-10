@@ -3,7 +3,7 @@
 #include "printf.h"
 
 #define MAIN
-//#define TEST
+#define TEST
 
 
 

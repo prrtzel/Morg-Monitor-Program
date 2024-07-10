@@ -66,9 +66,6 @@
     <ClCompile Include="registers.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="printf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="linker.ld">
@@ -144,9 +141,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="registers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="printf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

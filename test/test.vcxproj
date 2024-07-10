@@ -135,7 +135,6 @@
     <ClCompile Include="mem.c" />
     <ClCompile Include="morgio.c" />
     <ClCompile Include="morglib.c" />
-    <ClCompile Include="printf.c" />
     <ClCompile Include="registers.c" />
     <ClCompile Include="srec_parser.c" />
   </ItemGroup>
@@ -167,7 +166,6 @@
     <ClInclude Include="mem.h" />
     <ClInclude Include="morgio.h" />
     <ClInclude Include="morglib.h" />
-    <ClInclude Include="printf.h" />
     <ClInclude Include="registers.h" />
     <ClInclude Include="srec_parser.h" />
   </ItemGroup>
