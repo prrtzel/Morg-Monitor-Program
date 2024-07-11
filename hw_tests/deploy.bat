@@ -18,7 +18,9 @@ if "%hasDir%"=="false" (
 echo "Deploying %name%..."
 
 rem Start easybin and save the file as a .bin
-start /b "" easybin %name%/%name%.S68 /r /e
+cd %name%
+start /b "" easybin %name%.S68 /r /e
+cd ..
 powershell -nop -c "& {sleep -m 10}"
 wscript "save_bin.vbs" %1.BIN
 taskkill /f /im easybin.exe
