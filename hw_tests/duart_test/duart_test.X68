@@ -12,24 +12,22 @@ IMR     EQU     11  Interrupt Mask Register
 RxRDY	EQU		0	Recieve ready bit position 
 TxRDY	EQU		2	Transmit ready bit position 
 BAUD    EQU	    $CC baud rate value = 19,200 baud 
-SUPER_STACK EQU $8FFF0
+SUPER_STACK EQU $8FF00
 
 
     ORG $000000
-START
     DC.L SUPER_STACK
     DC.L INIT
     
     ORG $000200
-INIT    
+INIT:   
     NOP 
     JSR INIT_DUART
-LOOP
-    MOVE.B #$37, D1
-    JSR PUT_CHAR
+LOOP:
+    JSR GET_CHAR
     JMP LOOP
 
-INIT_DUART 
+INIT_DUART: 
     LEA	  	DUART,A0		A0 points to base DUART address 
 
 ; Software reset: 
@@ -54,23 +52,24 @@ INIT_DUART
     MOVE.B	#$05,CRA(A0)	enable Tx and Rx 
     RTS     
     
-GET_CHAR
-    MOVE.B  SRA(A0),D0
-    BTST    #0,D0 
+    
+GET_CHAR:
+    BTST    #2, SRA(A0)
     BEQ     GET_CHAR
-    MOVE.B  RBA(A0),D1 
     JSR     PUT_CHAR
-    RTS 
+    MOVE.B  RBA(A0), D1
+    BRA     PUT_CHAR
+    RTS
 
 
-PUT_CHAR
-    MOVE.B  SRA(A0),D0 
-    BTST    #2,D0 
+PUT_CHAR: 
+    BTST    #2, SRA(A0)
     BEQ     PUT_CHAR
     MOVE.B  D1,TBA(A0) 
-    RTS
+    RTS 
+   
     
-    END LOOP
+    END INIT
 
 
 
