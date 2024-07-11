@@ -1,6 +1,6 @@
 00000208 Starting Address
 Assembler used: EASy68K Editor/Assembler v5.16.01
-Created On: 7/11/2024 3:12:38 PM
+Created On: 7/11/2024 3:38:04 PM
 
 00000000  =00100000                  1  DUART   EQU     $00100000  loaded in A0 when needed, regs are offsets 
 00000000  =00000001                  2  MR1A    EQU     1   Mode Register1 
@@ -27,53 +27,54 @@ Created On: 7/11/2024 3:12:38 PM
 00000200                            23      ORG $000200
 00000200                            24  INIT    
 00000200  4E71                      25      NOP 
-00000202  4EB9 00000212             26      JSR INIT_DUART
+00000202  4EB9 00000216             26      JSR INIT_DUART
 00000208                            27  LOOP
-00000208  4EB9 0000025C             28      JSR GET_CHAR
-0000020E  4EF8 0208                 29      JMP LOOP
-00000212                            30  
-00000212                            31  INIT_DUART 
-00000212  41F9 00100000             32      LEA     DUART,A0        A0 points to base DUART address 
-00000218                            33  
-00000218                            34  ; Software reset: 
-00000218  117C 0050 0005            35      MOVE.B  #$50,CRA(A0)    Reset Break Change Interrupt
-0000021E  117C 0040 0005            36      MOVE.B  #$40,CRA(A0)    Reset Error Status
-00000224  117C 0030 0005            37      MOVE.B  #$30,CRA(A0)    Reset TxA 
-0000022A  117C 0020 0005            38      MOVE.B  #$20,CRA(A0)    Reset RxA 
-00000230  117C 0010 0005            39      MOVE.B  #$10,CRA(A0)    Reset MRA pointer 
-00000236                            40  
-00000236                            41  ; Initialization:
-00000236  117C 0000 000B            42      MOVE.B  #$00,IMR(A0)    disables IMR
-0000023C  117C 0080 0009            43      MOVE.B  #$80,ACR(A0)    selects baud rate set 2
-00000242  117C 00CC 0003            44      MOVE.B  #BAUD,CSRA(A0) set 19.2k baud Rx/Tx 
-00000248  117C 0013 0001            45      MOVE.B  #$13,MR1A(A0)   8-bits, no parity, 1 stop bit 
-0000024E                            46  
-0000024E                            47   
-0000024E                            48  ; This is the most important register to set in the 68681 DUART. 
-0000024E                            49  ; 07 sets: Normal mode, CTS and RTS disabled, stop bit length = 1 
-0000024E                            50  ; For testing load $#47 to enable auto-echo 
-0000024E                            51  
-0000024E  117C 0007 0001            52      MOVE.B  #$07,MR2A(A0)    
-00000254  117C 0005 0005            53      MOVE.B  #$05,CRA(A0)    enable Tx and Rx 
-0000025A  4E75                      54      RTS     
-0000025C                            55      
-0000025C                            56  GET_CHAR
-0000025C  1228 0003                 57      MOVE.B  SRA(A0),D1 
-00000260  0801 0000                 58      BTST    #0,D1 
-00000264  67F6                      59      BEQ     GET_CHAR
-00000266  1628 0007                 60      MOVE.B  RBA(A0),D3 
-0000026A  4EB9 00000272             61      JSR     PUT_CHAR
-00000270  4E75                      62      RTS 
-00000272                            63  
-00000272                            64  
-00000272                            65  PUT_CHAR
-00000272  1428 0003                 66      MOVE.B  SRA(A0),D2 
-00000276  0802 0002                 67      BTST    #2,D2 
-0000027A  67F6                      68      BEQ     PUT_CHAR
-0000027C  1143 0007                 69      MOVE.B  D3,TBA(A0) 
-00000280  4E75                      70      RTS
-00000282                            71      
-00000282                            72      END LOOP
+00000208  123C 0037                 28      MOVE.B #$37, D1
+0000020C  4EB9 00000276             29      JSR PUT_CHAR
+00000212  4EF8 0208                 30      JMP LOOP
+00000216                            31  
+00000216                            32  INIT_DUART 
+00000216  41F9 00100000             33      LEA     DUART,A0        A0 points to base DUART address 
+0000021C                            34  
+0000021C                            35  ; Software reset: 
+0000021C  117C 0050 0005            36      MOVE.B  #$50,CRA(A0)    Reset Break Change Interrupt
+00000222  117C 0040 0005            37      MOVE.B  #$40,CRA(A0)    Reset Error Status
+00000228  117C 0030 0005            38      MOVE.B  #$30,CRA(A0)    Reset TxA 
+0000022E  117C 0020 0005            39      MOVE.B  #$20,CRA(A0)    Reset RxA 
+00000234  117C 0010 0005            40      MOVE.B  #$10,CRA(A0)    Reset MRA pointer 
+0000023A                            41  
+0000023A                            42  ; Initialization:
+0000023A  117C 0000 000B            43      MOVE.B  #$00,IMR(A0)    disables IMR
+00000240  117C 0080 0009            44      MOVE.B  #$80,ACR(A0)    selects baud rate set 2
+00000246  117C 00CC 0003            45      MOVE.B  #BAUD,CSRA(A0) set 19.2k baud Rx/Tx 
+0000024C  117C 0013 0001            46      MOVE.B  #$13,MR1A(A0)   8-bits, no parity, 1 stop bit 
+00000252                            47  
+00000252                            48   
+00000252                            49  ; This is the most important register to set in the 68681 DUART. 
+00000252                            50  ; 07 sets: Normal mode, CTS and RTS disabled, stop bit length = 1 
+00000252                            51  ; For testing load $#47 to enable auto-echo 
+00000252                            52  
+00000252  117C 0007 0001            53      MOVE.B  #$07,MR2A(A0)    
+00000258  117C 0005 0005            54      MOVE.B  #$05,CRA(A0)    enable Tx and Rx 
+0000025E  4E75                      55      RTS     
+00000260                            56      
+00000260                            57  GET_CHAR
+00000260  1028 0003                 58      MOVE.B  SRA(A0),D0
+00000264  0800 0000                 59      BTST    #0,D0 
+00000268  67F6                      60      BEQ     GET_CHAR
+0000026A  1228 0007                 61      MOVE.B  RBA(A0),D1 
+0000026E  4EB9 00000276             62      JSR     PUT_CHAR
+00000274  4E75                      63      RTS 
+00000276                            64  
+00000276                            65  
+00000276                            66  PUT_CHAR
+00000276  1028 0003                 67      MOVE.B  SRA(A0),D0 
+0000027A  0800 0002                 68      BTST    #2,D0 
+0000027E  67F6                      69      BEQ     PUT_CHAR
+00000280  1141 0007                 70      MOVE.B  D1,TBA(A0) 
+00000284  4E75                      71      RTS
+00000286                            72      
+00000286                            73      END LOOP
 
 No errors detected
 No warnings generated
@@ -87,14 +88,14 @@ BAUD                CC
 CRA                 5
 CSRA                3
 DUART               100000
-GET_CHAR            25C
+GET_CHAR            260
 IMR                 B
 INIT                200
-INIT_DUART          212
+INIT_DUART          216
 LOOP                208
 MR1A                1
 MR2A                1
-PUT_CHAR            272
+PUT_CHAR            276
 RBA                 7
 RXRDY               0
 SRA                 3

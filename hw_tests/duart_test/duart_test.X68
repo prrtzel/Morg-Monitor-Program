@@ -25,7 +25,8 @@ INIT
     NOP 
     JSR INIT_DUART
 LOOP
-    JSR GET_CHAR
+    MOVE.B #$37, D1
+    JSR PUT_CHAR
     JMP LOOP
 
 INIT_DUART 
@@ -54,19 +55,19 @@ INIT_DUART
     RTS     
     
 GET_CHAR
-    MOVE.B  SRA(A0),D1 
-    BTST    #0,D1 
+    MOVE.B  SRA(A0),D0
+    BTST    #0,D0 
     BEQ     GET_CHAR
-    MOVE.B  RBA(A0),D3 
+    MOVE.B  RBA(A0),D1 
     JSR     PUT_CHAR
     RTS 
 
 
 PUT_CHAR
-    MOVE.B  SRA(A0),D2 
-    BTST    #2,D2 
+    MOVE.B  SRA(A0),D0 
+    BTST    #2,D0 
     BEQ     PUT_CHAR
-    MOVE.B  D3,TBA(A0) 
+    MOVE.B  D1,TBA(A0) 
     RTS
     
     END LOOP
