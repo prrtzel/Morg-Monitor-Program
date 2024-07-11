@@ -54,11 +54,14 @@ INIT_DUART:
     
     
 GET_CHAR:
+    MOVE.B  #$37, D1
+    JSR     PUT_CHAR
     BTST    #2, SRA(A0)
     BEQ     GET_CHAR
+    MOVE.B  #$35, D1
     JSR     PUT_CHAR
     MOVE.B  RBA(A0), D1
-    BRA     PUT_CHAR
+    JSR     PUT_CHAR
     RTS
 
 
@@ -70,6 +73,7 @@ PUT_CHAR:
    
     
     END INIT
+
 
 
 

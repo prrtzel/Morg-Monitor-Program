@@ -1,6 +1,6 @@
 00000200 Starting Address
 Assembler used: EASy68K Editor/Assembler v5.16.01
-Created On: 7/11/2024 6:13:55 PM
+Created On: 7/11/2024 6:35:49 PM
 
 00000000  =00100000                  1  DUART   EQU     $00100000  loaded in A0 when needed, regs are offsets 
 00000000  =00000001                  2  MR1A    EQU     1   Mode Register1 
@@ -58,22 +58,25 @@ Created On: 7/11/2024 6:13:55 PM
 0000025C                            54      
 0000025C                            55      
 0000025C                            56  GET_CHAR:
-0000025C  0828 0002 0003            57      BTST    #2, SRA(A0)
-00000262  67F8                      58      BEQ     GET_CHAR
-00000264  4EB9 00000274             59      JSR     PUT_CHAR
-0000026A  1228 0007                 60      MOVE.B  RBA(A0), D1
-0000026E  6000 0004                 61      BRA     PUT_CHAR
-00000272  4E75                      62      RTS
-00000274                            63  
-00000274                            64  
-00000274                            65  PUT_CHAR: 
-00000274  0828 0002 0003            66      BTST    #2, SRA(A0)
-0000027A  67F8                      67      BEQ     PUT_CHAR
-0000027C  1141 0007                 68      MOVE.B  D1,TBA(A0) 
-00000280  4E75                      69      RTS 
-00000282                            70     
-00000282                            71      
-00000282                            72      END INIT
+0000025C  123C 0037                 57      MOVE.B  #$37, D1
+00000260  4EB9 00000284             58      JSR     PUT_CHAR
+00000266  0828 0002 0003            59      BTST    #2, SRA(A0)
+0000026C  67EE                      60      BEQ     GET_CHAR
+0000026E  123C 0035                 61      MOVE.B  #$35, D1
+00000272  4EB9 00000284             62      JSR     PUT_CHAR
+00000278  1228 0007                 63      MOVE.B  RBA(A0), D1
+0000027C  4EB9 00000284             64      JSR     PUT_CHAR
+00000282  4E75                      65      RTS
+00000284                            66  
+00000284                            67  
+00000284                            68  PUT_CHAR: 
+00000284  0828 0002 0003            69      BTST    #2, SRA(A0)
+0000028A  67F8                      70      BEQ     PUT_CHAR
+0000028C  1141 0007                 71      MOVE.B  D1,TBA(A0) 
+00000290  4E75                      72      RTS 
+00000292                            73     
+00000292                            74      
+00000292                            75      END INIT
 
 No errors detected
 No warnings generated
@@ -94,7 +97,7 @@ INIT_DUART          212
 LOOP                208
 MR1A                1
 MR2A                1
-PUT_CHAR            274
+PUT_CHAR            284
 RBA                 7
 RXRDY               0
 SRA                 3
