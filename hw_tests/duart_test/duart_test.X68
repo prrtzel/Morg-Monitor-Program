@@ -8,25 +8,26 @@ TBA		EQU   	7   Transfer Holding Register
 RBA		EQU   	7	Receive Holding Register 
 ACR		EQU	  	9	Auxiliary control register 
 IMR     EQU     11  Interrupt Mask Register
+
 RxRDY	EQU		0	Recieve ready bit position 
 TxRDY	EQU		2	Transmit ready bit position 
 BAUD    EQU	    $CC baud rate value = 19,200 baud 
-SUPER_STACK EQU $8FFF0
+SUPER_STACK EQU $8FF00
 
 
-START   ORG $000000
-        DC.L SUPER_STACK
-        DC.L INIT
+    ORG $000000
+    DC.L SUPER_STACK
+    DC.L INIT
     
-        ORG $000200
-INIT
-        NOP 
-        JSR INIT_DUART
-LOOP
+    ORG $000200
+INIT:   
+    NOP 
+    JSR INIT_DUART
+LOOP:
     JSR GET_CHAR
-    JMP LOOP
+    BRA LOOP
 
-INIT_DUART 
+INIT_DUART: 
     LEA	  	DUART,A0		A0 points to base DUART address 
 
 ; Software reset: 
@@ -51,31 +52,24 @@ INIT_DUART
     MOVE.B	#$05,CRA(A0)	enable Tx and Rx 
     RTS     
     
-GET_CHAR
-    MOVE.L  D1, -(SP) 
-IN_POLL
-    MOVE.L  SRA(A0),D1 
-    BTST    #0,D1 
-    BEQ     IN_POLL 
-    MOVE.L  RBA(A0),D3 
-    JSR     PUT_CHAR
-    
-    MOVE.L  (SP)+,D1
+GET_CHAR:
+    BTST    #$0, SRA(A0)
+    BEQ     GET_CHAR
+    MOVE.B  RBA(A0),D1
+PUT_CHAR: 
+    BTST    #$2, SRA(A0)
+    BEQ     PUT_CHAR
+    MOVE.B  D1,TBA(A0) 
     RTS 
+    
+    END INIT
 
 
-PUT_CHAR
-    MOVE.L  D2, -(SP) 
-OUT_POLL
-    MOVE.L  SRA(A0),D2 
-    BTST    #2,D2 
-    BEQ     OUT_POLL 
-    MOVE.L  D3,TBA(A0) 
-    
-    MOVE.L  (SP)+,D2
-    RTS
-    
-    END LOOP
+
+
+
+
+
 
 
 
