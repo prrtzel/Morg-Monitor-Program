@@ -25,7 +25,7 @@ INIT:
     JSR INIT_DUART
 LOOP:
     JSR GET_CHAR
-    JMP LOOP
+    BRA LOOP
 
 INIT_DUART: 
     LEA	  	DUART,A0		A0 points to base DUART address 
@@ -52,27 +52,19 @@ INIT_DUART:
     MOVE.B	#$05,CRA(A0)	enable Tx and Rx 
     RTS     
     
-    
 GET_CHAR:
-    MOVE.B  #$37, D1
-    JSR     PUT_CHAR
-    BTST    #2, SRA(A0)
+    BTST    #$0, SRA(A0)
     BEQ     GET_CHAR
-    MOVE.B  #$35, D1
-    JSR     PUT_CHAR
-    MOVE.B  RBA(A0), D1
-    JSR     PUT_CHAR
-    RTS
-
-
+    MOVE.B  RBA(A0),D1
 PUT_CHAR: 
-    BTST    #2, SRA(A0)
+    BTST    #$2, SRA(A0)
     BEQ     PUT_CHAR
     MOVE.B  D1,TBA(A0) 
     RTS 
-   
     
     END INIT
+
+
 
 
 
