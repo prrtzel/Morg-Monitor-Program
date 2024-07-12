@@ -1,6 +1,24 @@
 #include "morgio.h"
 #include "morglib.h"
 #include "envctrl.h"
+#include "morglib.h"
+
+// Uart Registers
+unsigned char* mr1_a = (unsigned char*)0x00100000 + 1; // Mode Register 1
+unsigned char* mr2_a = (unsigned char*)0x00100000 + 1; // Mode Register 2
+unsigned char* sr_a =  (unsigned char*)0x00100000 + 3; // Status Register
+unsigned char* csr_a = (unsigned char*)0x00100000 + 3; // Clock Select Register
+unsigned char* cr_a =  (unsigned char*)0x00100000 + 5; // Command Register
+unsigned char* thr_a = (unsigned char*)0x00100000 + 7; // Transfer Holding Register
+unsigned char* rhr_a = (unsigned char*)0x00100000 + 7; // Receive Holding Register
+unsigned char* acr =   (unsigned char*)0x00100000 + 9; // Auxiliary Control Register
+unsigned char* imr =   (unsigned char*)0x00100000 + 11;// Interrupt Mask Register
+
+const char rx_rdy = 0;
+const char tx_rdy = 2;
+const unsigned char baud_rate = 0xCC; // 19.2k
+
+
 
 // serial print buffer
 static char* str_ptr_buffer;
@@ -21,6 +39,7 @@ void serial_print(const char* str_ptr) {
           "trap    #15");
 #endif  
 #ifdef HW
+	
 #endif
 }
 
@@ -33,6 +52,11 @@ void putc(const char c) {
           "trap    #15");
 #endif  
 #ifdef HW
+    while ((*sr_a & (1 << tx_rdy)) == 0)
+    {
+	    // poll until tx_rdy bit is one
+    }
+    *thr_a = putc_buffer;
 #endif
 }
 
@@ -44,7 +68,10 @@ extern char get_char(void) {
         return get_char_buffer;
 #endif
 #ifdef HARDWARE
+	putc('y');
 #endif
+    get_char_buffer = 1;
+    return '1';
 }
 
 extern void get_string(void) {
@@ -83,4 +110,24 @@ void get_input(void)
 {
 	serial_print("Morg>> ");
 	get_string();
+}
+
+void init_duart(void)
+{
+    // Software Reset
+    *cr_a = 0x50; // Reset Break Change Interrupt
+    *cr_a = 0x40; // Reset Error Status
+    *cr_a = 0x30; // Reset TxA
+    *cr_a = 0x20; // Reset RxA
+	*cr_a = 0x10; // Reset MRA Pointer
+
+    // Initialization
+    *imr = 0x00; // Disable IMR
+    *acr = 0x80; // Select Baud Rate Table 2
+    *csr_a = baud_rate; // Set Baud Rate
+    *mr1_a = 0x13; // 8-bits, no parity, 1 stop bit
+
+    // 0x47 for auto echo 0x07 for normal mode
+    *mr2_a = 0x07;
+    *cr_a = 0x05; // Enable Tx and Rx
 }

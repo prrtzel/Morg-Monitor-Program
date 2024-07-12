@@ -2,6 +2,7 @@
 #include "stdint.h"
 #include "crt0.h"
 #include "main.h"
+#include "envctrl.h"
 
 extern uint32_t end_stack;
 extern uint32_t end_text;
@@ -81,7 +82,7 @@ void Reset_Handler(void) {
 }
 
 void Default_Handler(void) {
-    // while (1);
+    while (1);
     return;
 }
 
