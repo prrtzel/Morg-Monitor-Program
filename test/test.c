@@ -3,9 +3,10 @@
 int main()
 {
 	init_duart();
-	putc('M');
-	putc('o');
-	putc('r');
-	putc('g');
+while (1)
+{
+	char c = get_char();
+	putc(c);
+}
 	return 0;
 }

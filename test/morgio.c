@@ -65,13 +65,15 @@ extern char get_char(void) {
     __asm("move.l	#5, % d0\n\t\t"
           "trap	    #15\n\t\t"
           "move.b % d1, get_char_buffer");
-        return get_char_buffer;
 #endif
-#ifdef HARDWARE
-	putc('y');
+#ifdef HW
+    while ((*sr_a & (1 << rx_rdy)) == 0)
+    {
+        // poll until tx_rdy bit is one
+    }
+    get_char_buffer = (char) *rhr_a;
 #endif
-    get_char_buffer = 1;
-    return '1';
+    return get_char_buffer;
 }
 
 extern void get_string(void) {
