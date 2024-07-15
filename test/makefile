@@ -3,7 +3,8 @@
 
 LINKER := linker.ld
 #FILES := main crt0 morgio conversions morglib srec_parser commands registers mem
-FILES := test crt0 morgio morglib
+FILES := main crt0 morgio morglib conversions mem registers commands
+#FILES := test crt0 morgio morglib
 OUTPUT_FILES := $(foreach file, $(FILES), $(file).o)
 CMD_SEPERATOR := &
 

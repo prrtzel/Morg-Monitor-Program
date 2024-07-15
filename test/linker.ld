@@ -5,11 +5,11 @@ OUTPUT_FORMAT(srec)
 MEMORY
 {
     ROM (rx)  : ORIGIN = 0x00000000, LENGTH = 500k
-    RAM (rwx) : ORIGIN = 0x00080000, LENGTH = 64k
+    RAM (rwx) : ORIGIN = 0x00080000, LENGTH = 128k
 }
 
 
-PROVIDE(end_stack = 0x0008FF00); 
+PROVIDE(end_stack = 0x0009FFF0); 
 
 SECTIONS
 {

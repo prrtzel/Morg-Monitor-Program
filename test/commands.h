@@ -9,8 +9,8 @@ enum
 	cmd_length = 5,
 	arg_length = 50,
 	max_num_of_args = 10,
-	end_address_space = 0x0011f000,
-	end_rom_space = 0x00100000
+	end_address_space = 0x0009fff0,
+	end_rom_space = 0x00080000
 };
 
 extern bool exit_code;

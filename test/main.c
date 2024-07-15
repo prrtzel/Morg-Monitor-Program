@@ -1,17 +1,12 @@
 #include "commands.h"
 #include "morgio.h"
-#include "printf.h"
-
-#define MAIN
-#define TEST
-
-
 
 int main(void)
 {
+	// Initialize DUART
+	init_duart();
 
-#ifdef MAIN
-	serial_print("Morg Monitor Program\n\r"
+	serial_print("\n\rMorg Monitor Program\n\r"
   "Distribute at your own risk!\n\r"
   "ABSOLUTELY NO REFUNDS OR WARRANTY AND STUFF\n\r"
   "ver 4.0\n\r"
@@ -22,10 +17,5 @@ int main(void)
 		get_input();
 		parse_cmd();
 	}
-#endif
-#ifdef TEST
-
-#endif
-
 	return 0;
 }
