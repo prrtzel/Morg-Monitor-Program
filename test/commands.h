@@ -5,7 +5,7 @@
 
 enum
 {
-	num_of_cmds = 10,
+	num_of_cmds = 11,
 	cmd_length = 5,
 	arg_length = 50,
 	max_num_of_args = 10,
@@ -17,6 +17,7 @@ extern bool exit_code;
 
 extern const char commands[num_of_cmds][cmd_length];
 
+void rmp(char args[num_of_cmds][arg_length], int num_of_args);
 void cls(char args[num_of_cmds][arg_length], int num_of_args);
 void rm(char args[num_of_cmds][arg_length], int num_of_args);
 void dmp(char args[num_of_cmds][arg_length], int num_of_args);

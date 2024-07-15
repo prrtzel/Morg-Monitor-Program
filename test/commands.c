@@ -9,11 +9,11 @@
 // TODO : allow smaller addresses EX: 69 -> 00000069
 
 // ReSharper disable once CppVariableCanBeMadeConstexpr
-const char commands[num_of_cmds][cmd_length] = { "rm", "dmp", "wm", "rr", "wr", "ld", "run", "exit", "help", "cls" };
+const char commands[num_of_cmds][cmd_length] = { "rm", "dmp", "wm", "rr", "wr", "ld", "run", "exit", "help", "cls", "rmp" };
 
 typedef void (*function_pointer)(char args[num_of_cmds][arg_length], int num_of_args);
 // ReSharper disable once CppVariableCanBeMadeConstexpr
-function_pointer const cmd_ptr[] = { rm, dmp, wm, rr, wr, ld, run, exit_morg, help, cls };
+function_pointer const cmd_ptr[] = { rm, dmp, wm, rr, wr, ld, run, exit_morg, help, cls, rmp };
 
 bool exit_code = false;
 
@@ -95,6 +95,32 @@ void rr(char args[num_of_cmds][arg_length], int num_of_args) {
 	{
 		const registers reg = get_register(args[1]);
 		read_register(reg);
+	}
+}
+
+void rmp(char args[num_of_cmds][arg_length], int num_of_args)
+{
+	if (num_of_args != 1)
+		serial_print("Error: Invalid Arguments.\n\rUsage: rmp\n\r");
+	else
+	{
+		//TODO : ADD NAME OF REG AND DMP MEMORY LOCATIONS AND ALL THAT STUFF
+		read_register(d0);
+		read_register(d1);
+		read_register(d2);
+		read_register(d3);
+		read_register(d4);
+		read_register(d5);
+		read_register(d6);
+		read_register(d7);
+		read_register(a0);
+		read_register(a1);
+		read_register(a2);
+		read_register(a3);
+		read_register(a4);
+		read_register(a5);
+		read_register(a6);
+		read_register(a7);
 	}
 }
 
