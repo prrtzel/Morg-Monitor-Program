@@ -27,10 +27,6 @@ void rm(char args[num_of_cmds][arg_length], int num_of_args) {
 	{
 		serial_print("Error: Invalid Arguments.\n\rUsage: rm [address]\n\r");
 	}
-	else if (get_str_length(args[1]) != 8)
-	{
-		serial_print("Error: Invalid Address. Must be 8 bytes long.\n\r");
-	}
 	else
 	{
 		const uint32_t address = ascii_hex_to_bin(args[1], 0);
@@ -50,10 +46,6 @@ void dmp(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 3)
 	{
 		serial_print("Error: Invalid Arguments.\n\rUsage: dmp [start address] [end address]\n\r");
-	}
-	else if (get_str_length(args[1]) != 8 || get_str_length(args[2]) != 8)
-	{
-		serial_print("Error: Invalid Address. Must be 4 hex bytes long.\n\r");
 	}
 	else
 	{
@@ -75,9 +67,9 @@ void wm(char args[num_of_cmds][arg_length], int num_of_args) {
 	{
 		serial_print("Error: Invalid Arguments.\n\rUsage: wm [address] [value]\n\r");
 	}
-	else if (get_str_length(args[1]) != 8 || get_str_length(args[2]) != 2)
+	else if (get_str_length(args[2]) != 2)
 	{
-		serial_print("Error: Invalid Address and or Value. Must be 4 hex bytes long.\n\r");
+		serial_print("Error: Invalid Value. Must be 2 hex bytes long.\n\r");
 	}
 	else
 	{
@@ -99,10 +91,6 @@ void rr(char args[num_of_cmds][arg_length], int num_of_args) {
 	{
 		serial_print("Error: Invalid Arguments.\n\rUsage: rr [register]\n\r");
 	}
-	else if (get_str_length(args[1]) != 2)
-	{
-		serial_print("Error: Invalid Register.\n\r");
-	}
 	else
 	{
 		const registers reg = get_register(args[1]);
@@ -114,10 +102,6 @@ void wr(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 3)
 	{
 		serial_print("Error: Invalid Arguments.\n\rUsage: wr [register] [value]\n\r");
-	}
-	else if (get_str_length(args[1]) != 2 || get_str_length(args[2]) != 8)
-	{
-		serial_print("Error: Invalid Register and or Value. Must be 4 hex bytes long.\n\r");
 	}
 	else
 	{
