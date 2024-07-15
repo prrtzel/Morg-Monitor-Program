@@ -16,9 +16,9 @@ wscript "open_bin_xgpro.vbs" %1.BIN
 powershell -nop -c "& {sleep -m 100}"
 
 rem Start impact and go through pop up window
-start impact
-powershell -nop -c "& {sleep -m 100}"
-wscript "impact_nav.vbs"
+rem start impact
+rem powershell -nop -c "& {sleep -m 100}"
+rem wscript "impact_nav.vbs"
 
 echo "Done!"
 
