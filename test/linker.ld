@@ -25,7 +25,6 @@ SECTIONS
         . = ALIGN(4);
         *(.text)
         end_text = .;
-        . = ALIGN(4);
     }> ROM
 
     .data :
@@ -34,7 +33,6 @@ SECTIONS
         start_data = .; 
         *(.data);
         end_data = .;  
-        . = ALIGN(4);
     } > RAM AT > ROM
 
     .bss :
@@ -43,6 +41,5 @@ SECTIONS
         start_bss = .;
         *(.bss)
         end_bss = .;
-        . = ALIGN(4);
     }> RAM
 }

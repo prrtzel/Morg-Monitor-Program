@@ -2,9 +2,8 @@
 # Test project for MCD Rev 2
 
 LINKER := linker.ld
-#FILES := main crt0 morgio conversions morglib srec_parser commands registers mem
-FILES := main crt0 morgio morglib conversions mem registers commands
-#FILES := test crt0 morgio morglib
+FILES := main crt0 morgio conversions morglib commands registers mem srec_parser
+#FILES := main crt0 morgio morglib conversions mem registers commands
 OUTPUT_FILES := $(foreach file, $(FILES), $(file).o)
 CMD_SEPERATOR := &
 
