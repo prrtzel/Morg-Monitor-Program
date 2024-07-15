@@ -66,13 +66,10 @@ void Reset_Handler(void) {
         *dst++ = 0;
     }
 
-
-
     // Call the main function
     main();
 
-
-    return;
+	return;
 }
 
 void Default_Handler(void) {
