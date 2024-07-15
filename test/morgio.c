@@ -19,34 +19,40 @@ const char tx_rdy = 2;
 const unsigned char baud_rate = 0xCC; // 19.2k
 
 
-
+#ifdef SIM
 // serial print buffer
 static char* str_ptr_buffer;
+
 // get_char buffer
 static char get_char_buffer;
 
 // putc buffer
 static char putc_buffer;
+#endif
 
 char input_buffer[input_buffer_size];
 char output_buffer[output_buffer_size];
 
 void serial_print(const char* str_ptr) {
-    str_ptr_buffer = (char*) str_ptr; //NOLINT
 #ifdef SIM
+    str_ptr_buffer = (char*)str_ptr; //NOLINT
     __asm("move.l  str_ptr_buffer, % a1\n\t\t"
           "move.b  #14, % d0\n\t\t"
           "trap    #15");
 #endif  
 #ifdef HW
-	
+	while(*str_ptr != '\0')
+	{
+        putc(*str_ptr);
+        str_ptr++;
+	}
 #endif
 }
 
 
 void putc(const char c) {
-    putc_buffer = c; //NOLINT
 #ifdef SIM
+    putc_buffer = c; //NOLINT
     __asm("move.l  putc_buffer, % a1\n\t\t"
           "move.b  #6, % d0\n\t\t"
           "trap    #15");
@@ -56,7 +62,7 @@ void putc(const char c) {
     {
 	    // poll until tx_rdy bit is one
     }
-    *thr_a = putc_buffer;
+    *thr_a = c;
 #endif
 }
 
@@ -65,15 +71,17 @@ extern char get_char(void) {
     __asm("move.l	#5, % d0\n\t\t"
           "trap	    #15\n\t\t"
           "move.b % d1, get_char_buffer");
+    return get_char_buffer;
 #endif
 #ifdef HW
     while ((*sr_a & (1 << rx_rdy)) == 0)
     {
         // poll until tx_rdy bit is one
     }
-    get_char_buffer = (char) *rhr_a;
+    char c = (char) *rhr_a;
+    putc(c);
+    return c;
 #endif
-    return get_char_buffer;
 }
 
 extern void get_string(void) {

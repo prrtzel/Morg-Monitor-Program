@@ -3,10 +3,11 @@
 int main()
 {
 	init_duart();
-while (1)
-{
-	char c = get_char();
-	putc(c);
-}
+	serial_print("Morg Testing in Progress\n\r");
+	while(1)
+	{
+		get_string();
+		serial_print(input_buffer);
+	}
 	return 0;
 }
