@@ -73,7 +73,11 @@ void Reset_Handler(void) {
 }
 
 void Default_Handler(void) {
-    while (1);
+    while (1)
+    {
+        // put "err" on to the data bus
+        __asm("move.l #0x00657272, %d1");
+    }
     return;
 }
 
