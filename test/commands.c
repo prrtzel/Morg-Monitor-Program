@@ -226,64 +226,64 @@ void parse_srec_line(char* srec, srecord* srec_struct)
 
 uint32_t write_srecord(char* srec)
 {
-	char* ptr = &srec[0];
+	//char* ptr = &srec[0];
 
-	// Loading bar
-	int num_of_records = 0;
-	int num_of_srec_written = 0;
+	//// Loading bar
+	//int num_of_records = 0;
+	//int num_of_srec_written = 0;
 
-	// Get the number of records
-	while (*srec != '\0')
-	{
-		if (*srec == 'S')
-			num_of_records++;
-		srec++;
-	}
-	char num_of_records_str[3];
-	binary_to_ascii_hex(num_of_records, num_of_records_str, 2);
-	num_of_records_str[2] = '\0';
-	serial_print(num_of_records_str);
-	serial_print(" Records Found\n\r\n\r");
+	//// Get the number of records
+	//while (*srec != '\0')
+	//{
+	//	if (*srec == 'S')
+	//		num_of_records++;
+	//	srec++;
+	//}
+	//char num_of_records_str[3];
+	//binary_to_ascii_hex(num_of_records, num_of_records_str, 2);
+	//num_of_records_str[2] = '\0';
+	//serial_print(num_of_records_str);
+	//serial_print(" Records Found\n\r\n\r");
 
-	for (int i = 0; i < num_of_records; i++)
-	{
-		srecord s;
-		parse_srec_line(ptr, &s);
-		ptr = ptr + s.size;
+	//for (int i = 0; i < num_of_records; i++)
+	//{
+	//	srecord s;
+	//	parse_srec_line(ptr, &s);
+	//	ptr = ptr + s.size;
 
-		if (s.type == error)
-		{
-			break;
-		}
-		else if (s.type == s1 || s.type == s2 || s.type == s3)
-		{
-			num_of_srec_written++;
-			disp_srec_loading_bar(num_of_records, num_of_srec_written);
-			// Write the data to memory
-			for (int i = 0; i < s.data_length; i++)
-			{
-				write_memory(s.address, s.data[i]);
-				s.address++;
-			}
-		}
-		else if (s.type == s7 || s.type == s8 || s.type == s9)
-		{
-			num_of_srec_written++;
-			disp_srec_loading_bar(num_of_records, num_of_srec_written);
-			serial_print("\n\rTermination record found...\n\r"
-				"Data Wrote Successfully\n\rUse the 'run' command to run the program\n\r");
-			return s.start_address;
-		}
-		else if (s.type == s0)
-		{
-			num_of_srec_written++;
-			disp_srec_loading_bar(num_of_records, num_of_srec_written);
-			// TODO display program name
-		}
-		else break;
-	}
-	//serial_print("Error: Parse Failed. Default Start Address now at 0\n\r");
-	serial_print("                                                   \n\r");
+	//	if (s.type == error)
+	//	{
+	//		serial_print("Error: Parse Failed. Default Start Address now at 0\n\r");
+	//		break;
+	//	}
+	//	else if (s.type == s1 || s.type == s2 || s.type == s3)
+	//	{
+	//		num_of_srec_written++;
+	//		disp_srec_loading_bar(num_of_records, num_of_srec_written);
+	//		// Write the data to memory
+	//		for (int i = 0; i < s.data_length; i++)
+	//		{
+	//			write_memory(s.address, s.data[i]);
+	//			s.address++;
+	//		}
+	//	}
+	//	else if (s.type == s7 || s.type == s8 || s.type == s9)
+	//	{
+	//		num_of_srec_written++;
+	//		disp_srec_loading_bar(num_of_records, num_of_srec_written);
+	//		serial_print("\n\rTermination record found...\n\r"
+	//			"Data Wrote Successfully\n\rUse the 'run' command to run the program\n\r");
+	//		return s.start_address;
+	//	}
+	//	else if (s.type == s0)
+	//	{
+	//		num_of_srec_written++;
+	//		disp_srec_loading_bar(num_of_records, num_of_srec_written);
+	//		// TODO display program name
+	//	}
+	//	else break;
+	//}
+	////serial_print("                                                   \n\r");
 	return 0;
 }
 
@@ -311,13 +311,18 @@ uint32_t write_srecord(char* srec)
 // TODO : allow smaller addresses EX: 69 -> 00000069
 
 // ReSharper disable once CppVariableCanBeMadeConstexpr
-const char commands[num_of_cmds][cmd_length] = { "rm", "dmp", "wm", "rr", "wr", "ld", "run", "exit", "help" };
+const char commands[num_of_cmds][cmd_length] = { "rm", "dmp", "wm", "rr", "wr", "ld", "run", "exit", "help", "cls" };
 
 typedef void (*function_pointer)(char args[num_of_cmds][arg_length], int num_of_args);
 // ReSharper disable once CppVariableCanBeMadeConstexpr
-function_pointer const cmd_ptr[] = { rm, dmp, wm, rr, wr, ld, run, exit_morg, help };
+function_pointer const cmd_ptr[] = { rm, dmp, wm, rr, wr, ld, run, exit_morg, help, cls };
 
 bool exit_code = false;
+
+void cls(char args[num_of_cmds][arg_length], int num_of_args)
+{
+	serial_print("\033\143");
+}
 
 void rm(char args[num_of_cmds][arg_length], int num_of_args) {
 	if (num_of_args != 2)
@@ -459,14 +464,15 @@ void help(char args[num_of_cmds][arg_length], int num_of_args)
 	serial_print(
 		"Morg Monitor Program\n\r"
 		"'help'\tDisplays this page\n\r"
+		"'cls' \tClears the Screen\n\r"
 		"'exit'\tExit Morg (you monster)\n\r"
-		"'rm'\t  Reads Byte at specific location\n\r"
-		"'dmp'\t Dumps bytes from a memory range\n\r"
-		"'wm'\t  Writes a byte to the specified location in memory\n\r"
-		"'rr'\t  Read a specified register\n\r"
-		"'wr'\t  Write a long word to a specified register\n\r"
-		"'ld'\t  Load an s-record into memory\n\r"
-		"'run'\t Run the s-record\n\r\n\r");
+		"'rm'  \tReads Byte at specific location\n\r"
+		"'dmp' \tDumps bytes from a memory range\n\r"
+		"'wm'  \tWrites a byte to the specified location in memory\n\r"
+		"'rr'  \tRead a specified register\n\r"
+		"'wr'  \tWrite a long word to a specified register\n\r"
+		"'ld'  \tLoad an s-record into memory\n\r"
+		"'run' \tRun the s-record\n\r\n\r");
 }
 
 void parse_cmd(void)
