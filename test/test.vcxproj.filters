@@ -16,9 +16,6 @@
     <Filter Include="etc">
       <UniqueIdentifier>{fe8b6467-042f-4bdb-ae51-522837484711}</UniqueIdentifier>
     </Filter>
-    <Filter Include="build">
-      <UniqueIdentifier>{5758e179-3353-48a6-afa3-8f368c667a59}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scripts">
       <UniqueIdentifier>{54c094e5-71d3-4cfd-80c6-c93df0753197}</UniqueIdentifier>
     </Filter>
@@ -66,47 +63,35 @@
     <ClCompile Include="registers.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="linker.ld">
       <Filter>etc</Filter>
     </None>
     <None Include="makefile" />
-    <None Include="morg.S68">
-      <Filter>build</Filter>
-    </None>
     <None Include="morg.bat">
       <Filter>Scripts\Run Sim</Filter>
     </None>
-    <None Include="call_xgpro.bat">
-      <Filter>Scripts\Deploy HW\bat</Filter>
-    </None>
     <None Include="deploy.bat">
       <Filter>Scripts\Deploy HW\bat</Filter>
-    </None>
-    <None Include="call_easybin.bat">
-      <Filter>Scripts\Deploy HW\bat</Filter>
-    </None>
-    <None Include="open_morg_bin.bat">
-      <Filter>Scripts\Deploy HW\bat</Filter>
-    </None>
-    <None Include="save_morg_bin.bat">
-      <Filter>Scripts\Deploy HW\bat</Filter>
-    </None>
-    <None Include="open_morg_bin.vbs">
-      <Filter>Scripts\Deploy HW\vbs</Filter>
-    </None>
-    <None Include="save_morg_bin.vbs">
-      <Filter>Scripts\Deploy HW\vbs</Filter>
-    </None>
-    <None Include="morg.BIN">
-      <Filter>build</Filter>
     </None>
     <None Include="srecord.ahk">
       <Filter>Scripts\Input S-Record</Filter>
     </None>
     <None Include="srecord.exe">
       <Filter>Scripts\Input S-Record</Filter>
+    </None>
+    <None Include="open_bin_xgpro.vbs">
+      <Filter>Scripts\Deploy HW\vbs</Filter>
+    </None>
+    <None Include="impact_nav.vbs">
+      <Filter>Scripts\Deploy HW\vbs</Filter>
+    </None>
+    <None Include="save_bin.vbs">
+      <Filter>Scripts\Deploy HW\vbs</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +126,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="registers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

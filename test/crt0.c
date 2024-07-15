@@ -2,6 +2,8 @@
 #include "stdint.h"
 #include "crt0.h"
 #include "main.h"
+#include "envctrl.h"
+#include "morgio.h"
 
 extern uint32_t end_stack;
 extern uint32_t end_text;
@@ -64,24 +66,17 @@ void Reset_Handler(void) {
         *dst++ = 0;
     }
 
-#ifdef HARDWARE
-    // Initialize DUART
-#endif
+
 
     // Call the main function
     main();
 
-#ifdef HARDWARE
-    // infinite loop until reset
-    // when main returns
-    while (1);
-#endif
 
     return;
 }
 
 void Default_Handler(void) {
-    // while (1);
+    while (1);
     return;
 }
 

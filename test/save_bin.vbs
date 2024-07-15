@@ -5,7 +5,7 @@ for i = 1 to 5
 next
 WshShell.SendKeys "{ENTER}"
 WScript.sleep 500
-WshShell.SendKeys "morg"
+WshShell.SendKeys Wscript.Arguments(0)
 WScript.sleep 100
 WshShell.SendKeys "{ENTER}"
 WshShell.SendKeys "{ENTER}"

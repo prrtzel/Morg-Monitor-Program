@@ -24,7 +24,7 @@ Next
 WshShell.SendKeys "{ENTER}"
 
 REM Select the morg.BIN file
-WshShell.SendKeys "morg.BIN"
+WshShell.SendKeys Wscript.Arguments(0)
 WshShell.SendKeys "{ENTER}"
 
 REM Select lower byte option

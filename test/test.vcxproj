@@ -137,20 +137,16 @@
     <ClCompile Include="morglib.c" />
     <ClCompile Include="registers.c" />
     <ClCompile Include="srec_parser.c" />
+    <ClCompile Include="test.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="call_xgpro.bat" />
+    <None Include="impact_nav.vbs" />
     <None Include="linker.ld" />
     <None Include="makefile" />
     <None Include="deploy.bat" />
     <None Include="morg.bat" />
-    <None Include="morg.BIN" />
-    <None Include="morg.S68" />
-    <None Include="call_easybin.bat" />
-    <None Include="open_morg_bin.bat" />
-    <None Include="open_morg_bin.vbs" />
-    <None Include="save_morg_bin.bat" />
-    <None Include="save_morg_bin.vbs" />
+    <None Include="open_bin_xgpro.vbs" />
+    <None Include="save_bin.vbs" />
     <None Include="srecord.ahk" />
     <None Include="srecord.exe" />
   </ItemGroup>
@@ -168,6 +164,7 @@
     <ClInclude Include="morglib.h" />
     <ClInclude Include="registers.h" />
     <ClInclude Include="srec_parser.h" />
+    <ClInclude Include="test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

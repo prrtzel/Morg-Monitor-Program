@@ -1,14 +1,15 @@
 ENTRY(Reset_Handler)
 OUTPUT_ARCH(m68k)
+OUTPUT_FORMAT(srec)
 
 MEMORY
 {
     ROM (rx)  : ORIGIN = 0x00000000, LENGTH = 500k
-    RAM (rwx) : ORIGIN = 0x00100000, LENGTH = 64k
+    RAM (rwx) : ORIGIN = 0x00080000, LENGTH = 128k
 }
 
 
-PROVIDE(end_stack = 0x00100000 + 0x0001FFF0); 
+PROVIDE(end_stack = 0x0009FFF0); 
 
 SECTIONS
 {

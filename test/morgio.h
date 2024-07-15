@@ -51,4 +51,6 @@ void putc(const char c);
 
 
 void get_input(void);
+
+void init_duart(void);
 #endif
