@@ -97,7 +97,6 @@ extern void get_string(void) {
         }
 
         char_buffer = get_char();
-        // TODO:  FIX THIS FOR PUTTY
 
         if (char_buffer == backspace) {
             if (i != 0) {
