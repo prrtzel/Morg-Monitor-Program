@@ -6,8 +6,6 @@
 #include "registers.h"
 #include "srec_parser.h"
 
-// TODO : allow smaller addresses EX: 69 -> 00000069
-
 // ReSharper disable once CppVariableCanBeMadeConstexpr
 const char commands[num_of_cmds][cmd_length] = { "rm", "dmp", "wm", "rr", "wr", "ld", "run", "exit", "help", "cls", "rmp" };
 
@@ -37,7 +35,7 @@ void rm(char args[num_of_cmds][arg_length], int num_of_args) {
 		else
 		{
 			read_memory(address);
-			serial_print("\n\r\n\r");
+			serial_print("\n\r");
 		}
 	}
 }
@@ -104,22 +102,37 @@ void rmp(char args[num_of_cmds][arg_length], int num_of_args)
 		serial_print("Error: Invalid Arguments.\n\rUsage: rmp\n\r");
 	else
 	{
-		//TODO : ADD NAME OF REG AND DMP MEMORY LOCATIONS AND ALL THAT STUFF
+		serial_print("D0 | ");
 		read_register(d0);
+		serial_print("D1 | ");
 		read_register(d1);
+		serial_print("D2 | ");
 		read_register(d2);
+		serial_print("D3 | ");
 		read_register(d3);
+		serial_print("D4 | ");
 		read_register(d4);
+		serial_print("D5 | ");
 		read_register(d5);
+		serial_print("D6 | ");
 		read_register(d6);
+		serial_print("D7 | ");
 		read_register(d7);
+		serial_print("A0 | ");
 		read_register(a0);
+		serial_print("A1 | ");
 		read_register(a1);
+		serial_print("A2 | ");
 		read_register(a2);
+		serial_print("A3 | ");
 		read_register(a3);
+		serial_print("A4 | ");
 		read_register(a4);
+		serial_print("A5 | ");
 		read_register(a5);
+		serial_print("A6 | ");
 		read_register(a6);
+		serial_print("A7 | ");
 		read_register(a7);
 	}
 }
@@ -170,7 +183,7 @@ void exit_morg(char args[num_of_cmds][arg_length], int num_of_args)
 void help(char args[num_of_cmds][arg_length], int num_of_args)
 {
 	serial_print(
-		"\n\r\n\rMorg Monitor Program\n\r"
+		"\n\rMorg Monitor Program\n\r"
 		"'help'\tDisplays this page\n\r"
 		"'cls' \tClears the Screen\n\r"
 		"'exit'\tExit Morg (you monster)\n\r"
@@ -178,6 +191,7 @@ void help(char args[num_of_cmds][arg_length], int num_of_args)
 		"'dmp' \tDumps bytes from a memory range\n\r"
 		"'wm'  \tWrites a byte to the specified location in memory\n\r"
 		"'rr'  \tRead a specified register\n\r"
+		"'rmp' \tRead all Registers\n\r"
 		"'wr'  \tWrite a long word to a specified register\n\r"
 		"'ld'  \tLoad an s-record into memory\n\r"
 		"'run' \tRun the s-record\n\r\n\r"
