@@ -91,7 +91,7 @@ void read_register(registers reg) {
 
 	binary_to_ascii_hex(register_result, output_buffer, hex_long_length);
 	serial_print(output_buffer);
-	serial_print("\n\r\n\r");
+	serial_print("\n\r");
 }
 
 static uint32_t reg_write_value = 0;
