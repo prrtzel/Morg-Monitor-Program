@@ -94,6 +94,7 @@
     <None Include="etc\linker.ld">
       <Filter>etc</Filter>
     </None>
+    <None Include="..\.gitignore" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />
