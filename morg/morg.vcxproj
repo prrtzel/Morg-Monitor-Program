@@ -24,7 +24,7 @@
     <ProjectGuid>{73e12327-0ce2-457c-8565-2f7ce6ba7588}</ProjectGuid>
     <RootNamespace>test</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>morg_rev4</ProjectName>
+    <ProjectName>morg</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
