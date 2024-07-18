@@ -1,7 +1,6 @@
 #include "morgio.h"
 #include "morglib.h"
 #include "envctrl.h"
-#include "morglib.h"
 
 // Uart Registers
 unsigned char* mr1_a = (unsigned char*)0x00100000 + 1; // Mode Register 1

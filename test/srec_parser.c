@@ -5,6 +5,8 @@
 #include "mem.h"
 #include "srec_parser.h"
 
+// TODO : Implement jmp rather than run and tell user where execute address is
+
 const struct
 {
 	const char* srec_type_str;

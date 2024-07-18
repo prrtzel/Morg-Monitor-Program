@@ -14,7 +14,7 @@ void read_memory(uint32_t address) { //NOLINT
 void mem_dump(uint32_t starting_address, uint32_t ending_address)
 {
 	char j = 1;
-	for (uint32_t i = starting_address; i <= ending_address; i++)
+	for (uint32_t i = 0; i <= ending_address; i++)
 	{
 		if (j == 1)
 		{
