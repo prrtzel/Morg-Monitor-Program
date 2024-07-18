@@ -1,5 +1,5 @@
-#include "commands.h"
-#include "morgio.h"
+#include "headers/commands.h"
+#include "headers/morgio.h"
 
 int main(void)
 {

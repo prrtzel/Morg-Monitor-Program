@@ -1,169 +1,0 @@
-EASy68K output log file: 7/5/2024 10:15:25 AM
-
-Morg Monitor Program
-Distribute at your own risk!
-ABSOLUTELY NO REFUNDS OR WARRANTY AND STUFF
-ver 4.0
-Type 'help' for a list of commands
-
-Morg>> ld
-
-Enter the S-Record:
-S00B00006D6F72672E53363850S31A0011000068656C6C6F004E5600004879001100004EB900110032S3120011001524588F7000600000024E5E4E757BS307001100220000C5S31A001100244E56000023EE000800110044227900110044103C0062S310001100390E4E4F600000024E5E4E7529S70500110006E3
-
-get_srec_type buffer: S0
-Type: S0
-S-Record: S00B00006D6F72672E53363850
-Byte: 0B 
-Byte: 00 
-Byte: 00 
-Byte: 6D 
-Byte: 6F 
-Byte: 72 
-Byte: 67 
-Byte: 2E 
-Byte: 53 
-Byte: 36 
-Byte: 38 
-Calculated Checksum: 50
-get_srec_type buffer: S3
-Type: S3
-S-Record: S31A0011000068656C6C6F004E5600004879001100004EB900110032
-Byte: 1A 
-Byte: 00 
-Byte: 11 
-Byte: 00 
-Byte: 00 
-Byte: 68 
-Byte: 65 
-Byte: 6C 
-Byte: 6C 
-Byte: 6F 
-Byte: 00 
-Byte: 4E 
-Byte: 56 
-Byte: 00 
-Byte: 00 
-Byte: 48 
-Byte: 79 
-Byte: 00 
-Byte: 11 
-Byte: 00 
-Byte: 00 
-Byte: 4E 
-Byte: B9 
-Byte: 00 
-Byte: 11 
-Byte: 00 
-Calculated Checksum: 32
-hello
-Checksum: 32
-Writing to Memory...
-get_srec_type buffer: S3
-Type: S3
-S-Record: S3120011001524588F7000600000024E5E4E757B
-Byte: 12 
-Byte: 00 
-Byte: 11 
-Byte: 00 
-Byte: 15 
-Byte: 24 
-Byte: 58 
-Byte: 8F 
-Byte: 70 
-Byte: 00 
-Byte: 60 
-Byte: 00 
-Byte: 00 
-Byte: 02 
-Byte: 4E 
-Byte: 5E 
-Byte: 4E 
-Byte: 75 
-Calculated Checksum: 7B
-$Xp
-Checksum: 7B
-Writing to Memory...
-get_srec_type buffer: S3
-Type: S3
-S-Record: S307001100220000C5
-Byte: 07 
-Byte: 00 
-Byte: 11 
-Byte: 00 
-Byte: 22 
-Byte: 00 
-Byte: 00 
-Calculated Checksum: C5
-
-Checksum: C5
-Writing to Memory...
-get_srec_type buffer: S3
-Type: S3
-S-Record: S31A001100244E56000023EE000800110044227900110044103C0062
-Byte: 1A 
-Byte: 00 
-Byte: 11 
-Byte: 00 
-Byte: 24 
-Byte: 4E 
-Byte: 56 
-Byte: 00 
-Byte: 00 
-Byte: 23 
-Byte: EE 
-Byte: 00 
-Byte: 08 
-Byte: 00 
-Byte: 11 
-Byte: 00 
-Byte: 44 
-Byte: 22 
-Byte: 79 
-Byte: 00 
-Byte: 11 
-Byte: 00 
-Byte: 44 
-Byte: 10 
-Byte: 3C 
-Byte: 00 
-Calculated Checksum: 62
-NV
-Checksum: 62
-Writing to Memory...
-get_srec_type buffer: S3
-Type: S3
-S-Record: S310001100390E4E4F600000024E5E4E7529
-Byte: 10 
-Byte: 00 
-Byte: 11 
-Byte: 00 
-Byte: 39 
-Byte: 0E 
-Byte: 4E 
-Byte: 4F 
-Byte: 60 
-Byte: 00 
-Byte: 00 
-Byte: 02 
-Byte: 4E 
-Byte: 5E 
-Byte: 4E 
-Byte: 75 
-Calculated Checksum: 29
-NO`
-Checksum: 29
-Writing to Memory...
-get_srec_type buffer: S7
-Invalid Srecord type
-S-Record: S70500110006E3
-Byte: 05 
-Byte: 00 
-Byte: 11 
-Byte: 00 
-Byte: 06 
-Calculated Checksum: E3
-Error: Parse Failed. Default Start Address now at 0
-Morg>> exit
-
-Program Ended

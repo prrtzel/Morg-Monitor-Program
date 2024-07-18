@@ -1,8 +1,6 @@
-#include "morglib.h"
+#include "headers/morglib.h"
 #include <stdbool.h>
 #include <stdint.h>
-#include "conversions.h"
-#include "morgio.h"
 
 void clear_buffer(char* buffer, const int size) {
 	for (int i = 0; i < size; i++) {

@@ -1,10 +1,10 @@
-#include "conversions.h"
-#include "morgio.h"
-#include "morglib.h"
-#include "commands.h"
-#include "mem.h"
-#include "registers.h"
-#include "srec_parser.h"
+#include "headers/conversions.h"
+#include "headers/morgio.h"
+#include "headers/morglib.h"
+#include "headers/commands.h"
+#include "headers/mem.h"
+#include "headers/registers.h"
+#include "headers/srec_parser.h"
 
 // ReSharper disable once CppVariableCanBeMadeConstexpr
 const char commands[num_of_cmds][cmd_length] = { "rm", "dmp", "wm", "rr", "wr", "ld", "run", "exit", "help", "cls", "rmp" };

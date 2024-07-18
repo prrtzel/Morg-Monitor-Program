@@ -1,9 +1,9 @@
-#include "conversions.h"
-#include "morgio.h"
-#include "morglib.h"
-#include "commands.h"
-#include "mem.h"
-#include "srec_parser.h"
+#include "headers/conversions.h"
+#include "headers/morgio.h"
+#include "headers/morglib.h"
+#include "headers/commands.h"
+#include "headers/mem.h"
+#include "headers/srec_parser.h"
 
 // TODO : Implement jmp rather than run and tell user where execute address is
 

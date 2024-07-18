@@ -1,9 +1,9 @@
 // ReSharper disable All
 #include "stdint.h"
-#include "crt0.h"
-#include "main.h"
-#include "envctrl.h"
-#include "morgio.h"
+#include "headers/crt0.h"
+#include "headers/main.h"
+#include "headers/envctrl.h"
+#include "headers/morgio.h"
 
 extern uint32_t end_stack;
 extern uint32_t end_text;
@@ -67,7 +67,7 @@ void Reset_Handler(void) {
     }
 
     // Call the main function
-    main();
+    //main();
 
 	return;
 }

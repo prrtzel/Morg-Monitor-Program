@@ -3,8 +3,7 @@ WshShell.AppActivate("Xgpro")
 WScript.sleep 100
 
 REM --------------------------
-REM Used only for testing when the ROM programmer is not 
-REM connected to the computer. It selects the T48 option.
+REM Selects the T48 option.
 
 WshShell.SendKeys "{TAB}"
 WshShell.SendKeys "{DOWN}"

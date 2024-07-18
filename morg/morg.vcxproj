@@ -128,43 +128,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="commands.c" />
-    <ClCompile Include="conversions.c" />
-    <ClCompile Include="crt0.c" />
-    <ClCompile Include="main.c" />
-    <ClCompile Include="mem.c" />
-    <ClCompile Include="morgio.c" />
-    <ClCompile Include="morglib.c" />
-    <ClCompile Include="registers.c" />
-    <ClCompile Include="srec_parser.c" />
-    <ClCompile Include="test.c" />
+    <ClCompile Include="src\commands.c" />
+    <ClCompile Include="src\conversions.c" />
+    <ClCompile Include="src\crt0.c" />
+    <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\mem.c" />
+    <ClCompile Include="src\morgio.c" />
+    <ClCompile Include="src\morglib.c" />
+    <ClCompile Include="src\registers.c" />
+    <ClCompile Include="src\srec_parser.c" />
+    <ClCompile Include="src\test.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="impact_nav.vbs" />
-    <None Include="linker.ld" />
+    <None Include="..\README.md" />
+    <None Include="etc\linker.ld" />
     <None Include="makefile" />
-    <None Include="deploy.bat" />
-    <None Include="morg.bat" />
-    <None Include="open_bin_xgpro.vbs" />
-    <None Include="save_bin.vbs" />
-    <None Include="srecord.ahk" />
-    <None Include="srecord.exe" />
+    <None Include="scripts\deploy.bat" />
+    <None Include="scripts\impact_nav.vbs" />
+    <None Include="scripts\morg.bat" />
+    <None Include="scripts\open_bin_xgpro.vbs" />
+    <None Include="scripts\save_bin.vbs" />
+    <None Include="scripts\srecord.ahk" />
+    <None Include="scripts\srecord.exe" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="commands.h" />
-    <ClInclude Include="conversions.h" />
-    <ClInclude Include="crt0.h" />
-    <ClInclude Include="envctrl.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="mem.h" />
-    <ClInclude Include="morgio.h" />
-    <ClInclude Include="morglib.h" />
-    <ClInclude Include="registers.h" />
-    <ClInclude Include="srec_parser.h" />
-    <ClInclude Include="test.h" />
+    <ClInclude Include="src\headers\commands.h" />
+    <ClInclude Include="src\headers\conversions.h" />
+    <ClInclude Include="src\headers\crt0.h" />
+    <ClInclude Include="src\headers\envctrl.h" />
+    <ClInclude Include="src\headers\main.h" />
+    <ClInclude Include="src\headers\mem.h" />
+    <ClInclude Include="src\headers\morgio.h" />
+    <ClInclude Include="src\headers\morglib.h" />
+    <ClInclude Include="src\headers\registers.h" />
+    <ClInclude Include="src\headers\srec_parser.h" />
+    <ClInclude Include="src\headers\test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

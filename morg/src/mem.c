@@ -1,9 +1,8 @@
 #include <stdint.h>
-#include "conversions.h"
-#include "morgio.h"
-#include "mem.h"
-
-#include "morglib.h"
+#include "headers/conversions.h"
+#include "headers/morgio.h"
+#include "headers/mem.h"
+#include "headers/morglib.h"
 
 void read_memory(uint32_t address) { //NOLINT
 	char* address_pointer = (char*)address; //NOLINT

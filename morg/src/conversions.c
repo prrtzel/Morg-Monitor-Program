@@ -1,8 +1,7 @@
-#include "morgio.h"
-#include "conversions.h"
+#include "headers/morgio.h"
+#include "headers/conversions.h"
 #include <stdint.h>
-#include "morglib.h"
-#include <stdbool.h>
+#include "headers/morglib.h"
 
 extern uint32_t ascii_hex_to_bin(const char* ascii_buffer, int length) {
     uint32_t result = 0;

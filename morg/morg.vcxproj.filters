@@ -36,99 +36,100 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
+    <ClCompile Include="src\commands.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="crt0.c">
+    <ClCompile Include="src\conversions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="morgio.c">
+    <ClCompile Include="src\crt0.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="conversions.c">
+    <ClCompile Include="src\main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="morglib.c">
+    <ClCompile Include="src\mem.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="srec_parser.c">
+    <ClCompile Include="src\morgio.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="commands.c">
+    <ClCompile Include="src\morglib.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mem.c">
+    <ClCompile Include="src\registers.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="registers.c">
+    <ClCompile Include="src\srec_parser.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="test.c">
+    <ClCompile Include="src\test.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="linker.ld">
-      <Filter>etc</Filter>
-    </None>
     <None Include="makefile" />
-    <None Include="morg.bat">
-      <Filter>Scripts\Run Sim</Filter>
-    </None>
-    <None Include="deploy.bat">
+    <None Include="..\README.md" />
+    <None Include="scripts\deploy.bat">
       <Filter>Scripts\Deploy HW\bat</Filter>
     </None>
-    <None Include="srecord.ahk">
+    <None Include="scripts\impact_nav.vbs">
+      <Filter>Scripts\Deploy HW\vbs</Filter>
+    </None>
+    <None Include="scripts\open_bin_xgpro.vbs">
+      <Filter>Scripts\Deploy HW\vbs</Filter>
+    </None>
+    <None Include="scripts\save_bin.vbs">
+      <Filter>Scripts\Deploy HW\vbs</Filter>
+    </None>
+    <None Include="scripts\srecord.ahk">
       <Filter>Scripts\Input S-Record</Filter>
     </None>
-    <None Include="srecord.exe">
+    <None Include="scripts\srecord.exe">
       <Filter>Scripts\Input S-Record</Filter>
     </None>
-    <None Include="open_bin_xgpro.vbs">
-      <Filter>Scripts\Deploy HW\vbs</Filter>
+    <None Include="scripts\morg.bat">
+      <Filter>Scripts\Run Sim</Filter>
     </None>
-    <None Include="impact_nav.vbs">
-      <Filter>Scripts\Deploy HW\vbs</Filter>
-    </None>
-    <None Include="save_bin.vbs">
-      <Filter>Scripts\Deploy HW\vbs</Filter>
+    <None Include="etc\linker.ld">
+      <Filter>etc</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="crt0.h">
+    <ClInclude Include="src\headers\commands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
+    <ClInclude Include="src\headers\conversions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="morgio.h">
+    <ClInclude Include="src\headers\crt0.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="envctrl.h">
+    <ClInclude Include="src\headers\envctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="conversions.h">
+    <ClInclude Include="src\headers\main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="morglib.h">
+    <ClInclude Include="src\headers\mem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="srec_parser.h">
+    <ClInclude Include="src\headers\morgio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="commands.h">
+    <ClInclude Include="src\headers\morglib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mem.h">
+    <ClInclude Include="src\headers\registers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="registers.h">
+    <ClInclude Include="src\headers\srec_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test.h">
+    <ClInclude Include="src\headers\test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

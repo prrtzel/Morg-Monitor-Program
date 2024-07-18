@@ -1,7 +1,7 @@
-#include "conversions.h"
-#include "morgio.h"
-#include "registers.h"
-#include "morglib.h"
+#include "headers/conversions.h"
+#include "headers/morgio.h"
+#include "headers/registers.h"
+#include "headers/morglib.h"
 
 const struct {
 	const char* str;

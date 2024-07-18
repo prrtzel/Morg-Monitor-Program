@@ -3,8 +3,7 @@ rem @echo off
 echo "Deploying %name%..."
 
 rem Start easybin and save the file as a .bin
-start /b "" easybin %1.S68 /r /e
-
+start /b "" easybin ../bin/%1.S68 /r /e
 powershell -nop -c "& {sleep -m 10}"
 wscript "save_bin.vbs" %1.BIN
 taskkill /f /im easybin.exe
